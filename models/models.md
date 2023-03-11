@@ -1,0 +1,2 @@
+# Modelos en MVC
+Los modelos contienen la definicion de las Clases con sus atributos y sus respectivos Getters y Setters [classEjemplo.php], además de almacenar cada uno de sus metodos, los cuales pueden ser almacenados en el mismo archivo donde se almacena la definición de la clase o en un archivo aparte [daoEjemplo.php]
