@@ -134,5 +134,32 @@ class Usuario
     }
 
 // Metodos
+    public function validarCorreoPassword($_correo, $_password) {
+        $sql = "SELECT correo, password FROM usuarios WHERE correo=? AND password=?";
+        $conn = new Conexion();
+        $dbh = $conn->getConexion();
+        try {
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(1, $_correo);
+            $stmt->bindParam(2, $_password);
+            ($stmt->execute()) ? true : false;
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
 
+    public function validarRegistro () { // pasale por parametros todos los campos que va llenar el usuario CLIENTE
+        // Basate en la función validarCorreoPassword para INSERTar los nuevos datos en la DB
+        $sql = ""; //Tu sentencia SQL
+        $conn = new Conexion();
+        $dbh = $conn->getConexion();
+        try {
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(1, $_correo); //con la funcion bindParam le vas pasando los parametros (asi como en POO con el PreparedStatement)
+            $stmt->bindParam(2, $_password);
+            ($stmt->execute()) ? true : false;
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
 }

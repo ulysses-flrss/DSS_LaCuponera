@@ -10,11 +10,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index-style.css">
     <title>Document</title>
-    <?=head()?>
+    <?= head() ?>
 </head>
 <body>
-    <?=menu()?>
-    <h1>AQUI ESTAMOS</h1>
+    <?= menu() ?>
+    <?= CONTROLLER_PATH . 'UsuarioController.php' ?>
+    <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST" class="">
+        <div>
+            <label for="">Correo:</label>
+            <input type="text" name="correo" id="">
+        </div>
+
+        <div>
+            <label for="">Password:</label>
+            <input type="password" name="password" id="">
+        </div>
+
+        <div>
+            <input class="button-primary" type="submit" value="Iniciar Sesión">
+        </div>
+    </form>
+    <?= footer() ?>
 </body>
 </html>
