@@ -1,4 +1,4 @@
-h1 {
+h2 {
     font-family: var(--title-font);
     color: #FFF;
     margin: 30px;
@@ -6,8 +6,10 @@ h1 {
 }
 
 img {
+    position: fixed;
     width: 700px;
-    margin: 15px 700px;
+    height: auto;
+    margin: 15px 50%;
 }
 
 .main-container {
@@ -17,30 +19,30 @@ img {
     height: 100%;
 }
 
+.column {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
 form {
     display: flex;
     background-color: var(--marian-blue);
     position: absolute;
     z-index: 4;
     flex-direction: column;
-    width: 35%;
-    height: 100%;
-}
-
-a {
-    text-decoration: none;
+    width: 45%;
+    height: 120%;
 }
 
 div {
     margin: 30px;
 }
 
-
-
 .row{
     display: flex;
     flex-direction: column;
-    row-gap: 4px;
     padding: 0 20px;
 }
 

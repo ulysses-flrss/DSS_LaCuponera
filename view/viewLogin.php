@@ -33,7 +33,7 @@
     
             <div class="third-row">
                 <button class="button-primary" type="submit" name="accion" value="login">Iniciar Sesión</button>
-                <button class="button-a" type="submit" name="accion" value="register">No tengo cuenta</button>
+                <button href="viewRegister.php" class="button-a" type="submit" name="redireccion" value="register">No tengo cuenta</button>
             </div>
         </form>
     </main>
