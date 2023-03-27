@@ -37,11 +37,15 @@ class UsuarioController {
         $result = $this->usuario->validarCorreoPassword($this->usuario->getCorreo(), $this->usuario->getPassword());
         if ($result == "OK") {
             // Redireccion a Pagina Index
-            //require_once(VIEW_PATH.'viewIndex.php');
-            header("location: view/viewIndex.php");
+            require_once(VIEW_PATH.'viewIndex.php');
         } else {
             // Mostrar mensaje de error de autentificación   
-            header("location: view/viewIndex.php");
+            require_once(VIEW_PATH.'viewLogin.php');
+            echo <<<EOD
+                <script>
+                    alert("Usuario/Contraseña Incorrectos");
+                </script>
+            EOD;
         }        
     }
 
