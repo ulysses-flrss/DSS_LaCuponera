@@ -4,7 +4,7 @@ function head() {
     return <<<EOD
         <link rel="stylesheet" href="view/css/root-style.css" crossorigin="anoymous">
         <link rel="stylesheet" href="view/css/normalize.css" crossorigin="anoymous">
-        <link rel="stylesheet" href="view/css/menu.css" crossorigin="anoymous">
+        <link rel="stylesheet" href="view/css/menu-style.css" crossorigin="anoymous">
         <link rel="stylesheet" href="https://kit.fontawesome.com/b5142e7f7e.css" crossorigin="anoymous">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="sweetalert2.min.js"></script>
