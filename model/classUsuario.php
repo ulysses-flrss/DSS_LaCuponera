@@ -1,4 +1,7 @@
 <?php
+
+include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
+require_once(MODEL_PATH.'classConexion.php');
 class Usuario
 {
 // Atributos
@@ -142,7 +145,13 @@ class Usuario
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(1, $_correo);
             $stmt->bindParam(2, $_password);
-            ($stmt->execute()) ? true : false;
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 1) {
+                return "OK";                
+            } else {
+                return "Error al iniciar la cuenta";
+            }
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }

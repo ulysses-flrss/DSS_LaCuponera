@@ -1,17 +1,98 @@
-:root {
-    /* Definicion de Variables CSS */
-    --first-color   : ;
-    --second-color  : ;
-    --third-color   : ;
-    --accent-color  : ;
-    --text-color    : ;
-    --border-color  : ;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Montserrat:wght@300;800&family=Orbitron:wght@900&family=Secular+One&family=Signika+Negative:wght@300&display=swap');
 
-    --title-font    : ;
-    --text-font     : ;
+:root {
+    --federal-blue: #03045eff;
+    --marian-blue: #023e8aff;
+    --honolulu-blue: #0077b6ff;
+    --blue-green: #0096c7ff;
+    --pacific-cyan: #00b4d8ff;
+    --vivid-sky-blue: #48cae4ff;
+    --non-photo-blue: #90e0efff;
+    --non-photo-blue-2: #ade8f4ff;
+    --light-cyan: #caf0f8ff;
+
+
+    --title-font:'Orbitron', sans-serif;
+    --subtitle-font:'Secular One', sans-serif;
+    --text-font:'Montserrat', sans-serif;
+    --button-font:'Josefin Sans', sans-serif;
+
+    --title-weight  : 800;
+    --subtitle-weight  : 500;
     
 }
 
 body {
     background-color: #fefefe;
 }
+
+
+label {
+    color: #FFF;
+    font-size: 20px;
+    font-family: var(--text-font);
+    font-weight: var(--title-weight);
+}
+
+input {
+    transition: 500ms all;
+    outline: none;
+    border: none;
+    color: #FFF !important;
+    background-color: transparent;
+    border-bottom: 2px solid #FFF;
+    font-family: var(--text-font) !important;
+    padding: 10px;
+    /* border-radius: 5px; */
+}
+
+input:focus {
+    transition: 500ms all;
+    color: #000 !important;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.button-primary {
+    transition: 500ms all;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--federal-blue);
+    width: fit-content;
+    font-size: 20px;
+    padding: 15px;
+    font-family: var(--button-font);
+    color: #FFF;
+}
+
+.button-primary:hover {
+    transition: 500ms all;
+    background-color: var(--honolulu-blue);
+    box-shadow: 0px 0px 5px var(--honolulu-blue);
+    transform: scale(1.1);
+    
+}
+
+.button-secondary {
+
+}
+
+.button-a {
+    transition: 500ms all;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    width: fit-content;
+    color: #FFF;
+    padding: 10px;
+    font-family: var(--button-font);
+}
+
+.button-a:hover {
+    transition: 500ms all;
+    transform: scale(1.1);
+}
+
+

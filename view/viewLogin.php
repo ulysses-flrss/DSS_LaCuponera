@@ -10,28 +10,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="view/css/login-style.css">
     <title>Document</title>
     <?= head() ?>
 </head>
 <body>
     <?= menu() ?>
-    <?= CONTROLLER_PATH . 'UsuarioController.php' ?>
-    <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST" class="">
-        <div>
-            <label for="">Correo:</label>
-            <input type="text" name="correo" id="">
-        </div>
-
-        <div>
-            <label for="">Password:</label>
-            <input type="password" name="password" id="">
-        </div>
-
-        <div>
-            <input class="button-primary" type="submit" value="Iniciar Sesión">
-        </div>
-    </form>
+    <main class="main-container">
+        <img src="view/img/bg.jpeg" alt="">
+        <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
+            <h1>La Cuponera</h1>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, asperiores fugit odio nulla nihil laboriosam minima alias beatae ad, aliquam natus voluptatum doloribus consequuntur aut harum laborum rerum dignissimos ipsum.</p>
+            <div class="first-row">
+                <label for="" class="">Correo:</label>
+                <input class="" type="text" name="correo" id="" placeholder="micorreo@dominio.com">
+            </div>
+    
+            <div class="second-row">
+                <label for="">Contraseña:</label>
+                <input class="four columns" type="password" name="password" id="" placeholder="123456">
+            </div>
+    
+            <div class="third-row">
+                <button class="button-primary" type="submit" name="accion" value="login">Iniciar Sesión</button>
+                <button class="button-a" type="submit" name="accion" value="register">No tengo cuenta</button>
+            </div>
+        </form>
+    </main>
     <?= footer() ?>
 </body>
 </html>
