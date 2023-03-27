@@ -146,7 +146,7 @@ class Usuario
             $stmt->bindParam(1, $_correo);
             $stmt->bindParam(2, $_password);
             $stmt->execute();
-
+            
             if ($stmt->rowCount() == 1) {
                 return "OK";                
             } else {
@@ -157,9 +157,9 @@ class Usuario
         }
     }
 
-    public function validarRegistro () { // pasale por parametros todos los campos que va llenar el usuario CLIENTE
+    public function validarRegistro ($_dui, $_nombres, ) { // pasale por parametros todos los campos que va llenar el usuario CLIENTE
         // Basate en la función validarCorreoPassword para INSERTar los nuevos datos en la DB
-        $sql = ""; //Tu sentencia SQL
+        $sql = "INSERT INTO latabla VALUES (id= null, valor=?, valor=?)"; //Tu sentencia SQL
         $conn = new Conexion();
         $dbh = $conn->getConexion();
         try {

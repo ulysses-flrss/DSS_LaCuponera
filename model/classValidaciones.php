@@ -1,5 +1,5 @@
 <?php 
-class Validaciones {
+class Validacion {
 // Validaciones USUARIO
     public static function isCorreo ($correo) {
         $regExp = "/^\w+\@\w+\.\w+$/";

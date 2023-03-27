@@ -50,6 +50,10 @@ class Cupon {
 		$this->estado = $estado;
 		return $this;
 	}
+
+
+// Metodos
+	//
 }
 
 

@@ -136,7 +136,16 @@ class Oferta {
 	}
 
 // Metodos
-
+	// public function listarCupones
+		//sql
+		//conexion
+		//getConexion()
+		//definir variable que va guardar ofertas
+		//try
+			//prepare sql
+			//execute()
+			//
+	// public function listarCupon
     
 }
 

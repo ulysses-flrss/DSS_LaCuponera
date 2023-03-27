@@ -23,7 +23,7 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, asperiores fugit odio nulla nihil laboriosam minima alias beatae ad, aliquam natus voluptatum doloribus consequuntur aut harum laborum rerum dignissimos ipsum.</p>
             <div class="row">
                 <label for="" class="">Correo:</label>
-                <input class="" type="text" name="correo" id="" placeholder="micorreo@dominio.com">
+                <input class="" type="email" name="correo" id="" placeholder="micorreo@dominio.com">
             </div>
     
             <div class="row">
