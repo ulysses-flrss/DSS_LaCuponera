@@ -21,12 +21,12 @@
         <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
             <h1>La Cuponera</h1>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, asperiores fugit odio nulla nihil laboriosam minima alias beatae ad, aliquam natus voluptatum doloribus consequuntur aut harum laborum rerum dignissimos ipsum.</p>
-            <div class="first-row">
+            <div class="row">
                 <label for="" class="">Correo:</label>
                 <input class="" type="text" name="correo" id="" placeholder="micorreo@dominio.com">
             </div>
     
-            <div class="second-row">
+            <div class="row">
                 <label for="">Contraseña:</label>
                 <input class="four columns" type="password" name="password" id="" placeholder="123456">
             </div>
