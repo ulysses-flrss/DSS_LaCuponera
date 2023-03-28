@@ -80,6 +80,7 @@ class UsuarioController {
         $this->usuario->setCorreo($correo);
 
         if ($password === $passwordConf) {
+            //Aqui pone el codigo para encriptar la contraseña
             $this->usuario->setPassword($password);
         } else {
             return "CONTRASEÑAS DIFERENTES";
