@@ -52,13 +52,13 @@ class UsuarioController {
             // Mostrar mensaje de error de autentificación   
             require_once(VIEW_PATH.'viewLogin.php');
 
-            echo "<script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',  
-              })
-            </script>";
+            // echo "<script>
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Something went wrong!',  
+            //   })
+            // </script>";
         }        
     }
 
