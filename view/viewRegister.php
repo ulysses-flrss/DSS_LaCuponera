@@ -17,7 +17,6 @@ include_once(PLUGIN_PATH);
 </head>
 
 <body>
-    <?= menu() ?>
     <main class="main-container">
         <img src="view/img/bg.jpeg" alt="">
         <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
