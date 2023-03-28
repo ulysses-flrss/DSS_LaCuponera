@@ -39,7 +39,7 @@ include_once(PLUGIN_PATH);
             <div class="column">
                 <div class="row">
                     <label for="" class="">Teléfono:</label>
-                    <input class="" type="number" name="telefono" id="" placeholder="72951065">
+                    <input class="" type="tel" name="telefono" id="" placeholder="72951065">
                 </div>
                 <div class="row">
                     <label for="" class="">Correo:</label>
