@@ -15,7 +15,13 @@ function head() {
 function menu() {
     return <<<EOD
         <nav>
-            
+            <ul class="menu">
+                <li><img src="view/img/usuario.jpeg"></li>
+                <li><a href="UsuarioController.php?accion=logout">Cerrar sesion</a></li>
+                <li><a href="#">Cupones</a></i>
+                <li><a href="#">Rubros</a></i>
+                <li><img src="view/img/bg.jpeg"></li>
+            </ul>
         </nav>
     EOD;
 }

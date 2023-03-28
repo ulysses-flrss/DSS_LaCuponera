@@ -1,15 +1,30 @@
 <?php 
-//Include config.php
-//require_once classCupones.php
-class OfertasController {
-        // Definir atributo privado (model/cupon)
 
-    // Definir constructor
-        // $this->tuVariable = new Cupon()
-        // Definis la variable accion
-        // Haces un if ($accion)
-        // ($accion=='') $this->listarCupones()
-    
-    // Definir funciones (verCupones, verCupon)
+include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
+require_once(MODEL_PATH.'classOferta.php');
+
+class OfertasController {
+       
+    private $cupones;
+
+    public function __construct(){
+
+        $this->cupones = new Oferta();
+        $accion = isset($_REQUEST['accion'])?$_REQUEST['accion']:'';
+        /*$compra = isset($_REQUEST['compra'])?$_REQUEST['compra']:'';*/
+
+        if($accion == ""){
+
+            $this->verCupones();
+
+        }
+    }
+        
+    public function verCupones(){
+        $listar = $this->cupones->listarCupones();
+
+        return $listar;
+    }
+
 }
 ?>

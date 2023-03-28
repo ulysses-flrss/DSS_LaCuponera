@@ -23,7 +23,7 @@ class UsuarioController {
         } else if($redireccion == "login") {
             require_once(VIEW_PATH."viewLogin.php");
         } else {
-            if ($accion == '') {
+            if ($accion == '' || $accion == "logout") {
                 $this->index();
             } else if ($accion == 'login') { 
                 $this->login();
@@ -47,7 +47,7 @@ class UsuarioController {
         $result = $this->usuario->validarCorreoPassword($this->usuario->getCorreo(), $this->usuario->getPassword());
         if ($result == "OK") {
             // Redireccion a Pagina Index
-            require_once(VIEW_PATH.'viewIndex.php');
+            require_once(VIEW_PATH.'viewOfertas.php');
         } else {
             // Mostrar mensaje de error de autentificación   
             require_once(VIEW_PATH.'viewLogin.php');
@@ -61,13 +61,11 @@ class UsuarioController {
                 
     }
 
-    public function listCupones () {
-
+    public function logout () {
+        session_start();
+        session_destroy();
+        require_once(VIEW_PATH.'viewLogin.php');
     }
-
-
-
-
 }
 
     

@@ -1,4 +1,7 @@
 <?php
+
+include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
+require_once(MODEL_PATH.'classConexion.php');
 class Oferta {
 // Atributos
     private $cod_oferta;
@@ -136,15 +139,36 @@ class Oferta {
 	}
 
 // Metodos
-	// public function listarCupones
-		//sql
-		//conexion
-		//getConexion()
-		//definir variable que va guardar ofertas
-		//try
-			//prepare sql
-			//execute()
-			//
+
+	public function listarCupones(){
+		$sql = " SELECT titulo, precio_regular, precio_oferta, inicio_oferta, fechaLimite_cupon FROM oferta ";
+		$conn = new Conexion();
+        $dbh = $conn->getConexion();
+		$rs = array();
+		try{
+			$stmt = $dbh->prepare($sql);
+			$stmt->execute();
+		}catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+		}
+
+		if($stmt->rowCount() > 0){
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+				
+				$cupon = new self();
+
+				$cupon->setTitulo($row['titulo']);
+				$cupon->setPrecioRegular($row['precio_regular']);
+				$cupon->setPrecioOferta($row['precio_oferta']);
+				$cupon->setInicioOferta($row['inicio_oferta']);
+				$cupon->setFechaLimiteCupon($row['fechaLimite_cupon']);
+
+				array_push($rs, $cupon);
+			}
+		}
+		return $rs;
+	}
+	
 	// public function listarCupon
     
 }
