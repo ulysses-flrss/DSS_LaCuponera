@@ -20,7 +20,7 @@ function menu() {
                 <li><a href="UsuarioController.php?accion=logout">Cerrar sesion</a></li>
                 <li><a href="#">Cupones</a></i>
                 <li><a href="#">Rubros</a></i>
-                <li><img src="view/img/bg.jpeg"></li>
+                <li><img src="view/img/logo-bg-remove.png"></li>
             </ul>
         </nav>
     EOD;
