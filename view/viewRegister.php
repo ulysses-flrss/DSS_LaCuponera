@@ -2,7 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/config.php');
 include_once(PLUGIN_PATH);
 ?>
-
+<!--No molestes tan noche -->
 <!DOCTYPE html>
 <html lang="en">
 
