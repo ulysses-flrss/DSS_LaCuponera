@@ -13,6 +13,7 @@ class Usuario
     private $nombres;
     private $apellidos;
     private $telefono;
+    private $direccion;
     private $cod_empresa;
     private $cod_rol;
 
@@ -112,6 +113,18 @@ class Usuario
         return $this;
     }
 
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
     public function getCodEmpresa()
     {
         return $this->cod_empresa;
@@ -157,15 +170,19 @@ class Usuario
         }
     }
 
-    public function validarRegistro ($_dui, $_nombres, ) { // pasale por parametros todos los campos que va llenar el usuario CLIENTE
-        // Basate en la función validarCorreoPassword para INSERTar los nuevos datos en la DB
-        $sql = "INSERT INTO latabla VALUES (id= null, valor=?, valor=?)"; //Tu sentencia SQL
+    public function validarRegistro ($_dui, $_nombres, $_apellidos, $_telefono, $_correo, $_direccion, $_password) {       
+        $sql = "INSERT INTO usuarios VALUES (cod_usuario= null, correo=?, password=?, dui=?, nombres=?, apellidos=?, telefono=?, direccion=? )";
         $conn = new Conexion();
         $dbh = $conn->getConexion();
         try {
             $stmt = $dbh->prepare($sql);
-            $stmt->bindParam(1, $_correo); //con la funcion bindParam le vas pasando los parametros (asi como en POO con el PreparedStatement)
-            $stmt->bindParam(2, $_password);
+            $stmt->bindParam(1, $_dui);
+            $stmt->bindParam(2, $_nombres);
+            $stmt->bindParam(3, $_apellidos);
+            $stmt->bindParam(4, $_telefono);
+            $stmt->bindParam(5, $_correo);
+            $stmt->bindParam(6, $_direccion);
+            $stmt->bindParam(7, $_password);
             ($stmt->execute()) ? true : false;
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();

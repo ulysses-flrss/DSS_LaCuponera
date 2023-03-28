@@ -24,7 +24,7 @@ include_once(PLUGIN_PATH);
             <h2> Crea tu cuenta </h2>
             <div class="row">
                 <label for="" class="">DUI:</label>
-                <input class="" type="text" name="correo" id="" placeholder="12345678-9">
+                <input class="" type="text" name="dui" id="" placeholder="12345678-9">
             </div>
             <div class="column">
                 <div class="row">
@@ -53,11 +53,11 @@ include_once(PLUGIN_PATH);
             <div class="column">
                 <div class="row">
                     <label for="" class="">Contraseña:</label>
-                    <input class="" type="text" name="contraseña" id="" placeholder="123456">
+                    <input class="" type="text" name="password" id="" placeholder="123456">
                 </div>
                 <div class="row">
                     <label for="" class="">Repita su contraseña:</label>
-                    <input class="" type="text" name="contraseña2" id="" placeholder="123456">
+                    <input class="" type="text" name="password" id="" placeholder="123456">
                 </div>
             </div>
             <div class="third-row">
