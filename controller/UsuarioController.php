@@ -2,6 +2,8 @@
 
 use UsuarioController as GlobalUsuarioController;
 
+use function PHPSTORM_META\map;
+
 include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
 require_once(MODEL_PATH.'classUsuario.php');
 require_once(MODEL_PATH.'classValidaciones.php');
@@ -49,7 +51,8 @@ class UsuarioController {
             // Redireccion a Pagina Index
             require_once(VIEW_PATH.'viewOfertas.php');
         } else {
-            // Mostrar mensaje de error de autentificación   
+            // Mostrar mensaje de error de autentificación 
+            var_dump($result);  
             require_once(VIEW_PATH.'viewLogin.php');
 
             // echo "<script>
@@ -65,28 +68,57 @@ class UsuarioController {
     public function register() {
         $correo = isset($_POST['correo'])?$_POST['correo']:'';
         $password = isset($_POST['password'])?$_POST['password']:'';
+        $passwordConf = isset($_POST['passwordConfirm'])?$_POST['passwordConfirm']:'';
         $dui = isset($_POST['dui'])?$_POST['dui']:'';
         $nombre = isset($_POST['nombre'])?$_POST['nombre']:'';
         $apellido = isset($_POST['apellido'])?$_POST['apellido']:'';
         $telefono = isset($_POST['telefono'])?$_POST['telefono']:'';
-        $direccion = isset($_POST['direccion'])?$_POST['direccion']:'';
+        $codEmpresa = isset($_POST['codEmpresa'])?$_POST['codEmpresa']:'';
+        $codRol = isset($_POST['codRol'])?$_POST['codRol']:'';
  
 
         $this->usuario->setCorreo($correo);
-        $this->usuario->setPassword($password);
-        $this->usuario->setdui($dui);
+
+        if ($password === $passwordConf) {
+            $this->usuario->setPassword($password);
+        } else {
+            return "CONTRASEÑAS DIFERENTES";
+        }
+
+        $this->usuario->setDui($dui);
         $this->usuario->setNombres($nombre);
         $this->usuario->setApellidos($apellido);
         $this->usuario->setTelefono($telefono);
-        $this->usuario->setDireccion($direccion);
+        $this->usuario->setCodEmpresa($codEmpresa);
+        $this->usuario->setCodRol($codRol);
 
-        $result = $this->usuario->validarRegistro($this->usuario->getCorreo(), $this->usuario->getPassword(), $this->usuario->getdui(), $this->usuario->getNombres(),
-         $this->usuario->getApellidos(), $this->usuario->getTelefono(), $this->usuario->getDireccion());
+        try {
+            $result = $this->usuario->validarRegistro(
+                null,
+                $this->usuario->getCorreo(),
+                $this->usuario->getPassword(),
+                $this->usuario->getDui(),
+                $this->usuario->getNombres(),
+                $this->usuario->getApellidos(),
+                $this->usuario->getTelefono(),
+                null,
+                $this->usuario->getCodRol()
+            );
+        } catch(Exception $e) {
+            echo "
+                <script>
+                    alert(".$e->getMessage().")
+                </script>
+            ";
+        }
+
+
         if ($result == "OK") {
             // Redireccion a Pagina Index
             require_once(VIEW_PATH.'viewLogin.php');
         } else {
             // Mostrar mensaje de error de autentificación   
+            var_dump($result);  
             require_once(VIEW_PATH.'viewRegister.php');
         }  
     }
@@ -96,6 +128,7 @@ class UsuarioController {
         session_destroy();
         require_once(VIEW_PATH.'viewLogin.php');
     }
+
 }
 
     

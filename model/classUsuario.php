@@ -6,14 +6,12 @@ class Usuario
 {
 // Atributos
     private $cod_usuario;
-    private $usuario;
     private $correo;
     private $password;
     private $dui;
     private $nombres;
     private $apellidos;
     private $telefono;
-    private $direccion;
     private $cod_empresa;
     private $cod_rol;
 
@@ -25,18 +23,6 @@ class Usuario
     public function setCodUsuario($cod_usuario)
     {
         $this->cod_usuario = $cod_usuario;
-
-        return $this;
-    }
-
-    public function getUsuario()
-    {
-        return $this->usuario;
-    }
-
-    public function setUsuario($usuario)
-    {
-        $this->usuario = $usuario;
 
         return $this;
     }
@@ -65,12 +51,12 @@ class Usuario
         return $this;
     }
 
-    public function getdui()
+    public function getDui()
     {
         return $this->dui;
     }
 
-    public function setdui($dui)
+    public function setDui($dui)
     {
         $this->dui = $dui;
 
@@ -109,18 +95,6 @@ class Usuario
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
-
-    public function setDireccion($direccion)
-    {
-        $this->direccion = $direccion;
 
         return $this;
     }
@@ -170,22 +144,33 @@ class Usuario
         }
     }
 
-    public function validarRegistro ($_dui, $_nombres, $_apellidos, $_telefono, $_correo, $_direccion, $_password) {       
-        $sql = "INSERT INTO usuarios VALUES (cod_usuario= null, correo=?, password=?, dui=?, nombres=?, apellidos=?, telefono=?, direccion=? )";
+    public function validarRegistro ($cod_usuario, $correo, $password, $dui, $nombres, $apellidos, $telefono, $cod_empresa, $cod_rol) {       
+        $sql = "INSERT INTO usuarios 
+        (cod_usuario, correo, password, dui, nombres, apellidos, telefono, cod_empresa, cod_rol) 
+        VALUES (:cod_usuario, :correo, :password, :dui, :nombres, :apellidos, :telefono, :cod_empresa, :cod_rol)";
         $conn = new Conexion();
         $dbh = $conn->getConexion();
+        //echo $cod_usuario, $correo;
         try {
             $stmt = $dbh->prepare($sql);
-            $stmt->bindParam(1, $_dui);
-            $stmt->bindParam(2, $_nombres);
-            $stmt->bindParam(3, $_apellidos);
-            $stmt->bindParam(4, $_telefono);
-            $stmt->bindParam(5, $_correo);
-            $stmt->bindParam(6, $_direccion);
-            $stmt->bindParam(7, $_password);
-            ($stmt->execute()) ? true : false;
-        } catch (PDOException $e) {
-            return "Error: " . $e->getMessage();
+            $stmt->bindParam(':cod_usuario', $cod_usuario);
+            $stmt->bindParam(':correo', $correo);
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':dui', $dui);           
+            $stmt->bindParam(':nombres', $nombres);
+            $stmt->bindParam(':apellidos', $apellidos);
+            $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':cod_empresa', $cod_empresa);
+            $stmt->bindParam(':cod_rol', $cod_rol);
+            if ($stmt->execute()) {
+                return "OK";
+            } else {
+                // error de autenticación
+                return "Fallo de Autenticación";
+            }
+        } catch (Exception $e) {
+             return "Error: " . $e->getMessage();
+            //return var_dump($usuario);
         }
     }
 }

@@ -49,7 +49,7 @@ div {
 .third-row{
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: 15px auto;
 }
 
 .third-row *{

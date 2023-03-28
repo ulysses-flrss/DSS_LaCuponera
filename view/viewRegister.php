@@ -21,6 +21,10 @@ include_once(PLUGIN_PATH);
         <img src="view/img/bg.jpeg" alt="">
         <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
             <h2> Crea tu cuenta </h2>
+
+            <input type="hidden" name="codEmpresa" value="NULL">
+            <input type="hidden" name="codRol" value="CLI">
+
             <div class="row">
                 <label for="" class="">DUI:</label>
                 <input class="" type="text" name="dui" id="" placeholder="12345678-9">
@@ -38,25 +42,21 @@ include_once(PLUGIN_PATH);
             <div class="column">
                 <div class="row">
                     <label for="" class="">Teléfono:</label>
-                    <input class="" type="tel" name="telefono" id="" placeholder="72951065">
+                    <input class="" type="text" name="telefono" id="" placeholder="7295-1065">
                 </div>
                 <div class="row">
                     <label for="" class="">Correo:</label>
                     <input class="" type="text" name="correo" id="" placeholder="correo@dominio.com">
                 </div>
             </div>
-            <div class="row">
-                <label for="" class="">Dirección:</label>
-                <input class="" type="text" name="direccion" id="" placeholder="Calle Leonardo da Vinci, 7, 41092">
-            </div>
             <div class="column">
                 <div class="row">
                     <label for="" class="">Contraseña:</label>
-                    <input class="" type="text" name="password" id="" placeholder="123456">
+                    <input class="" type="password" name="password" id="" placeholder="123456">
                 </div>
                 <div class="row">
                     <label for="" class="">Repita su contraseña:</label>
-                    <input class="" type="text" name="password" id="" placeholder="123456">
+                    <input class="" type="password" name="passwordConfirm" id="" placeholder="123456">
                 </div>
             </div>
             <div class="third-row">
