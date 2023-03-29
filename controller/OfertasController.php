@@ -22,7 +22,7 @@ class OfertasController {
             $this->verCupones();
 
         }else if($accion="verCupon"){
-            $this->verCupon();
+            $this->verCupon($codigoCupon);
         }
     }
         
