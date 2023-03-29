@@ -1,4 +1,4 @@
-.cupones-div{
+.detallecupon-div{
     width: 100%;
     height: 100%;
     display: flex;
@@ -10,11 +10,11 @@
     column-gap: 50px;
 }
 
-.cupones-tarjeta{
+.detallecupon-tarjeta{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    width: 55%;
     justify-content: space-around;
     font-family: var(--text-font);
     padding: 15px;
@@ -22,9 +22,4 @@
     background-color: var(--non-photo-blue);
     box-shadow: 0px 1px 10px;
 
-}
-
-.button-primary{
-   text-decoration: none !important;
-   background-color: var(--pacific-cyan) !important;
 }
