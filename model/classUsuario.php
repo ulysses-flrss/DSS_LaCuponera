@@ -125,6 +125,25 @@ class Usuario
 
 // Metodos
 
+    public function getHashedPassword ($correo) {
+        $sql = "SELECT password FROM usuarios WHERE correo=?";
+        $conn = new Conexion();
+        $dbh = $conn->getConexion();
+        try {
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(1, $correo);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $usuario['password'];
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+
+        return $usuario['password'];
+    }
+
+    
+
     public function getUsuario ($correo, $password) {
         $sql = "SELECT * FROM usuarios WHERE correo=? AND password=?";
         $conn = new Conexion();

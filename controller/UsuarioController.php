@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['usuario'] = null;
 use UsuarioController as GlobalUsuarioController;
 
 use function PHPSTORM_META\map;
@@ -43,20 +44,25 @@ class UsuarioController
 
 
 
+
     public function login () {
         $correo = isset($_POST['correo'])?$_POST['correo']:'';
         $password = isset($_POST['password'])?$_POST['password']:'';
         
         $this->usuario->setCorreo($correo);
-        $this->usuario->setPassword($password);
-        $result = $this->usuario->validarCorreoPassword($this->usuario->getCorreo(), $this->usuario->getPassword());
-        if ($result == "OK") {
-            // Redireccion a Pagina Index
+
+        $hashed = $this->usuario->getHashedPassword($correo);
+        //echo password_hash($password, PASSWORD_DEFAULT) . "<br>" . $hashed;
+        if (password_verify($password, $hashed)) {
             $usuarioActual = $this->usuario->getUsuario($this->usuario->getCorreo(), $this->usuario->getPassword());
             $_SESSION['usuario'] = $usuarioActual;
             require_once(VIEW_PATH.'viewOfertas.php');
-        
+        } else {
+            echo "<br>TA MALO";
         }
+        
+
+        
     }
 
 
@@ -92,10 +98,7 @@ class UsuarioController
         $this->usuario->setCorreo($correo);
 
         if ($password === $passwordConf) {
-            $salt = password_hash($password, PASSWORD_DEFAULT);
-            $hashed_password = password_hash($password, PASSWORD_BCRYPT, ['salt' => $salt]);
-            echo $hashed_password;
-            $this->usuario->setPassword($hashed_password);
+            $this->usuario->setPassword(password_hash($password, PASSWORD_BCRYPT));
         } else {
             return "CONTRASEÑAS DIFERENTES";
         }

@@ -3,10 +3,10 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
 require_once(MODEL_PATH.'classOferta.php');
 
-$codigoCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
-if($codigoCupon != ""){
-    $oferta = new OfertasController();
-}
+// $codigoCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
+// if($codigoCupon != ""){
+//     $oferta = new OfertasController();
+// }
 
 class OfertasController {
        
@@ -22,7 +22,7 @@ class OfertasController {
             $this->verCupones();
 
         }else if($accion="verCupon"){
-            $this->verCupon();
+            // $this->verCupon($codigoCupon);
         }
     }
         
