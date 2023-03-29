@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use UsuarioController as GlobalUsuarioController;
 
 use function PHPSTORM_META\map;
@@ -41,32 +41,24 @@ class UsuarioController
         require_once(VIEW_PATH . "viewLogin.php");
     }
 
-    public function login()
-    {
-        $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
-        $password = isset($_POST['password']) ? $_POST['password'] : '';
 
+
+    public function login () {
+        $correo = isset($_POST['correo'])?$_POST['correo']:'';
+        $password = isset($_POST['password'])?$_POST['password']:'';
+        
         $this->usuario->setCorreo($correo);
         $this->usuario->setPassword($password);
-
         $result = $this->usuario->validarCorreoPassword($this->usuario->getCorreo(), $this->usuario->getPassword());
         if ($result == "OK") {
             // Redireccion a Pagina Index
-            require_once(VIEW_PATH . 'viewOfertas.php');
-        } else {
-            // Mostrar mensaje de error de autentificación 
-            var_dump($result);
-            require_once(VIEW_PATH . 'viewLogin.php');
-
-            // echo "<script>
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Something went wrong!',  
-            //   })
-            // </script>";
+            $usuarioActual = $this->usuario->getUsuario($this->usuario->getCorreo(), $this->usuario->getPassword());
+            $_SESSION['usuario'] = $usuarioActual;
+            require_once(VIEW_PATH.'viewOfertas.php');
+        
         }
     }
+
 
     public function register()
     {

@@ -124,6 +124,39 @@ class Usuario
     }
 
 // Metodos
+
+    public function getUsuario ($correo, $password) {
+        $sql = "SELECT * FROM usuarios WHERE correo=? AND password=?";
+        $conn = new Conexion();
+        $dbh = $conn->getConexion();
+        $miUsuario = null;
+        try {
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(1, $correo);
+            $stmt->bindParam(2, $password);
+            $stmt->execute();
+            if($stmt->rowCount() > 0){
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    
+                    $miUsuario = new self();
+                    $miUsuario->setCodUsuario($row['cod_usuario']);
+                    $miUsuario->setCorreo($row['correo']);
+                    $miUsuario->setPassword($row['password']);
+                    $miUsuario->setDui($row['dui']);
+                    $miUsuario->setNombres($row['nombres']);
+                    $miUsuario->setApellidos($row['apellidos']);
+                    $miUsuario->setTelefono($row['telefono']);
+                    $miUsuario->setCodEmpresa($row['cod_empresa']);
+                    $miUsuario->setCodRol($row['cod_rol']);
+
+                }
+            }
+            return array_values((array)$miUsuario);
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
     public function validarCorreoPassword($_correo, $_password) {
         $sql = "SELECT correo, password FROM usuarios WHERE correo=? AND password=?";
         $conn = new Conexion();

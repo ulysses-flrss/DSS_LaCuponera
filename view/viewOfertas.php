@@ -4,6 +4,7 @@
     include_once(CONTROLLER_PATH.'OfertasController.php');
 
     $controller = new OfertasController();
+    $userActual =$_SESSION['usuario'];
 ?>
 
 <!DOCTYPE html>

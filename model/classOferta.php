@@ -152,7 +152,7 @@ class Oferta {
             return "Error: " . $e->getMessage();
 		}
 
-		if($stmt->rowCount() > 0){
+		if($stmt->rowCount() == 1){
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 				
 				$cupon = new self();
