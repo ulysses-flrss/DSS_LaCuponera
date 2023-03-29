@@ -141,7 +141,7 @@ class Oferta {
 // Metodos
 
 	public function listarCupones(){
-		$sql = " SELECT titulo, precio_regular, precio_oferta, inicio_oferta, fechaLimite_cupon FROM oferta ";
+		$sql = " SELECT * FROM oferta ";
 		$conn = new Conexion();
         $dbh = $conn->getConexion();
 		$rs = array();
@@ -157,11 +157,17 @@ class Oferta {
 				
 				$cupon = new self();
 
+				$cupon->setCodOferta($row['cod_oferta']);
 				$cupon->setTitulo($row['titulo']);
 				$cupon->setPrecioRegular($row['precio_regular']);
 				$cupon->setPrecioOferta($row['precio_oferta']);
 				$cupon->setInicioOferta($row['inicio_oferta']);
+				$cupon->setFinOferta($row['fin_oferta']);
 				$cupon->setFechaLimiteCupon($row['fechaLimite_cupon']);
+				$cupon->setCantidadLimiteCupon($row['cantidadLimite_cupon']);
+				$cupon->setDecripcion($row['descripcion']);
+				$cupon->setEstado($row['estado']);
+				$cupon->setCodEmpresa($row['cod_empresa']);
 
 				array_push($rs, $cupon);
 			}
@@ -169,7 +175,41 @@ class Oferta {
 		return $rs;
 	}
 	
-	// public function listarCupon
+	public function listarCupon($codCupon){
+		$sql = " SELECT * FROM oferta WHERE cod_oferta=:cod_oferta";
+		$conn = new Conexion();
+        $dbh = $conn->getConexion();
+		$rs = array();
+		try{
+			$stmt = $dbh->prepare($sql);
+			$stmt->bindParam(':cod_oferta', $codCupon);
+			$stmt->execute();
+		}catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+		}
+
+		if($stmt->rowCount() > 0){
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+				
+				$cupon = new self();
+
+				$cupon->setCodOferta($row['cod_oferta']);
+				$cupon->setTitulo($row['titulo']);
+				$cupon->setPrecioRegular($row['precio_regular']);
+				$cupon->setPrecioOferta($row['precio_oferta']);
+				$cupon->setInicioOferta($row['inicio_oferta']);
+				$cupon->setFinOferta($row['fin_oferta']);
+				$cupon->setFechaLimiteCupon($row['fechaLimite_cupon']);
+				$cupon->setCantidadLimiteCupon($row['cantidadLimite_cupon']);
+				$cupon->setDecripcion($row['descripcion']);
+				$cupon->setEstado($row['estado']);
+				$cupon->setCodEmpresa($row['cod_empresa']);
+
+				array_push($rs, $cupon);
+			}
+		}
+		return $rs;
+	}
     
 }
 

@@ -20,19 +20,27 @@
 </head>
 <body>
     <?= menu() ?>
-    <?php
 
-    $cupones = $controller->verCupones();
+    <div class='cupones-div'>
+        <?php
 
-    foreach ($cupones as $cupon) {
+        $cupones = $controller->verCupones();
 
-        // Cuando definas el nombre de las clases en las etiquetas usa comillas simples ''
-        echo "<div>
-            <h1>".$cupon->getTitulo()."</h1>
-            <p></p>
-        </div>";
-    }
-    ?>
+        foreach ($cupones as $cupon) {
+
+            echo "
+                    <div class='cupones-tarjeta'>
+                    <h2>".$cupon->getTitulo()."</h2>
+                    <h3>Precio Regular: ".$cupon->getPrecioRegular()."</h3>
+                    <h3>Precio Oferta:".$cupon->getPrecioOferta()."</h3>
+                    <p>Fecha de inicio: ".$cupon->getInicioOferta()."</p>
+                    <p>Fecha Limite: ".$cupon->getFechaLimiteCupon()."</p>
+                    <br>
+                    <a href='view/viewDetalles.php?accion=verCupon&codigoCupon=" .$cupon->getcodOferta()."' class='button-primary'>Ver detalles</a>
+                    </div>";
+        }
+        ?>
+    </div>
     <?= footer() ?>
 </body>
 </html>
