@@ -15,10 +15,15 @@ class UsuarioController
 {
 
     private $usuario;
+    public $num_errores;
+    public $errores;
+    
 
     public function __construct()
     {
         $this->usuario = new Usuario();
+        $this->errores = "";
+        $this->num_errores = 0;
         $accion = isset($_REQUEST['accion']) ? $_REQUEST['accion'] : '';
         $redireccion = isset($_REQUEST['redireccion']) ? $_REQUEST['redireccion'] : '';
         if ($redireccion == "register") {
@@ -48,18 +53,43 @@ class UsuarioController
     public function login () {
         $correo = isset($_POST['correo'])?$_POST['correo']:'';
         $password = isset($_POST['password'])?$_POST['password']:'';
-        
-        $this->usuario->setCorreo($correo);
+        $valCorreo = Validacion::isCorreo($correo);
+
+        if ($correo == '' || $password == '') {
+            require_once(VIEW_PATH.'viewLogin.php');
+            $this->errores .= "<p>Ningun campo puede quedar vacio</p>";
+            return $this->errores;
+        }
+
+        if($valCorreo == "OK"){
+            $this->usuario->setCorreo($correo);
+        } else {
+            require_once(VIEW_PATH.'viewLogin.php');
+            // var_dump($valCorreo);
+            $this->errores .= "<p>$valCorreo</p>";
+            return $this->errores;
+        }
+
+
 
         $hashed = $this->usuario->getHashedPassword($correo);
-        //echo password_hash($password, PASSWORD_DEFAULT) . "<br>" . $hashed;
-        if (password_verify($password, $hashed)) {
-            $usuarioActual = $this->usuario->getUsuario($this->usuario->getCorreo(), $this->usuario->getPassword());
-            $_SESSION['usuario'] = $usuarioActual;
-            require_once(VIEW_PATH.'viewOfertas.php');
+        // var_dump($hashed);
+        if ($hashed == false) {
+            require_once(VIEW_PATH.'viewLogin.php');
+            $this->errores .= "<p>El correo no está asociado a ninguna cuenta</p>";
+            return $this->errores;
         } else {
-            echo "<br>TA MALO";
+            if (password_verify($password, $hashed['password'])) {
+                $usuarioActual = $this->usuario->getUsuario($this->usuario->getCorreo(), $this->usuario->getPassword());
+                $_SESSION['usuario'] = $usuarioActual;
+                require_once(VIEW_PATH.'viewOfertas.php');
+            } else {
+                require_once(VIEW_PATH.'viewLogin.php');
+                $this->errores .= "<p>Usuario o Contraseña incorrectas</p>";
+                return $this->errores;
+            }
         }
+        //echo password_hash($password, PASSWORD_DEFAULT) . "<br>" . $hashed;
         
 
         
@@ -68,6 +98,7 @@ class UsuarioController
 
     public function register()
     {
+        $this->errores = "";
         $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
         $passwordConf = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
@@ -77,6 +108,10 @@ class UsuarioController
         $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
         $codEmpresa = isset($_POST['codEmpresa']) ? $_POST['codEmpresa'] : '';
         $codRol = isset($_POST['codRol']) ? $_POST['codRol'] : '';
+
+        $valCorreo = Validacion::isCorreo($correo);
+        $valDui = Validacion::isDui($dui);
+        $valTelefono = Validacion::isTelefono($telefono);
         //Token del correo, a saber si sirve bro xd
         //$token = 'VERIFY_' . uniqid();
         //$to = $correo;
@@ -95,20 +130,50 @@ class UsuarioController
             // Token inválido, mostrar mensaje de error
         //}
 
-        $this->usuario->setCorreo($correo);
+            if ($correo == "" || $password == "" || $dui == "" || $nombre == "" || $apellido == "" || $telefono == "") {
+                $this->num_errores++;
+                $this->errores .= "<p>Ningun campo puede quedar vacio</p>";
+            }
 
-        if ($password === $passwordConf) {
-            $this->usuario->setPassword(password_hash($password, PASSWORD_BCRYPT));
-        } else {
-            return "CONTRASEÑAS DIFERENTES";
+            if ($dui != "" && $valDui == "OK") {
+                $this->usuario->setDui($dui);
+            } else {
+                $this->num_errores++;
+                $this->errores .= "<p>$valDui</p>";
+            }
+    
+            if ($telefono != "" && $valTelefono == "OK") {
+                $this->usuario->setTelefono($telefono);
+            } else {
+                $this->num_errores++;
+                $this->errores .= "<p>$valTelefono</p>";
+            }
+    
+            if ($correo != "" && $valCorreo == "OK") {
+                $this->usuario->setCorreo($correo);
+            } else {
+                $this->num_errores++;
+                $this->errores .= "<p>$valCorreo</p>";
+            }
+    
+            if ($password == $passwordConf) {
+                $this->usuario->setPassword(password_hash($password, PASSWORD_BCRYPT));
+            } else {
+                $this->num_errores++;
+                $this->errores .= "<p>Las contraseñas ingresadas son diferentes</p>";
+            }
+        
+            $this->usuario->setNombres($nombre);
+            $this->usuario->setApellidos($apellido);
+            $this->usuario->setCodRol($codRol);
+            // $this->usuario->setCodEmpresa($codEmpresa);
+
+        
+
+        if ($this->num_errores > 0) {
+            require_once(VIEW_PATH.'viewRegister.php');
+            return $this->errores;
         }
-
-        $this->usuario->setDui($dui);
-        $this->usuario->setNombres($nombre);
-        $this->usuario->setApellidos($apellido);
-        $this->usuario->setTelefono($telefono);
-        $this->usuario->setCodEmpresa($codEmpresa);
-        $this->usuario->setCodRol($codRol);
 
         try {
             $result = $this->usuario->validarRegistro(
@@ -136,7 +201,6 @@ class UsuarioController
             require_once(VIEW_PATH . 'viewLogin.php');
         } else {
             // Mostrar mensaje de error de autentificación   
-            var_dump($result);
             require_once(VIEW_PATH . 'viewRegister.php');
         }
     }

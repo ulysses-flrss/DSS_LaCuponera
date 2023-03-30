@@ -7,7 +7,7 @@ h1 {
 
 img {
     width: 700px;
-    margin: 15px 700px;
+    margin: 15px 50%;
 }
 
 .main-container {
@@ -23,7 +23,7 @@ form {
     position: absolute;
     z-index: 4;
     flex-direction: column;
-    width: 35%;
+    width: 45%;
     height: 100%;
 }
 
@@ -36,6 +36,24 @@ div {
 }
 
 
+
+p.descripcion {
+    text-align: justify;
+}
+
+.error p {
+    list-style: none;
+    background-color: var(--blue-green);
+    width: 100%;
+    color: #FFF;
+    border-radius: 5px;
+    height: fit-content;
+    padding: 20px 0;
+    text-align: center;
+    margin: auto;
+    font-family: var(--text-font);
+    font-weight: var(--subtitle-weight);
+}
 
 .row{
     display: flex;

@@ -1,6 +1,9 @@
 <?php
     include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php'); 
     include_once(PLUGIN_PATH);
+    include_once(CONTROLLER_PATH.'UsuarioController.php');
+
+    $miControlador = new UsuarioController();
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +22,14 @@
         <img src="view/img/bg.jpeg" alt="">
         <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
             <h1>La Cuponera</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, asperiores fugit odio nulla nihil laboriosam minima alias beatae ad, aliquam natus voluptatum doloribus consequuntur aut harum laborum rerum dignissimos ipsum.</p>
+            <p class="descripcion">Es una empresa dedicada a ofrecer cupones de descuento para una amplia variedad de productos y servicios. Su objetivo es ayudar a los consumidores a ahorrar dinero mientras compran lo que necesitan.</p>
+            <div class="row error">
+                
+                    <?= $miControlador->errores ?>
+            </div>
             <div class="row">
                 <label for="" class="">Correo:</label>
-                <input class="" type="email" name="correo" id="" placeholder="micorreo@dominio.com">
+                <input class="" type="text" name="correo" id="" placeholder="micorreo@dominio.com">
             </div>
     
             <div class="row">

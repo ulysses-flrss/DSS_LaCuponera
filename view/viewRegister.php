@@ -1,6 +1,8 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/config.php');
-include_once(PLUGIN_PATH);
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/config.php');
+    include_once(PLUGIN_PATH);
+    include_once(CONTROLLER_PATH.'UsuarioController.php');
+    $miControlador = new UsuarioController();
 ?>
 <!--No molestes tan noche -->
 <!DOCTYPE html>
@@ -19,51 +21,60 @@ include_once(PLUGIN_PATH);
 <body>
     <main class="main-container">
         <img src="view/img/bg.jpeg" alt="">
-        <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
-            <h2> Crea tu cuenta </h2>
+        <div class="form-container">
+        </div>
 
-            <input type="hidden" name="codEmpresa" value="NULL">
-            <input type="hidden" name="codRol" value="CLI">
+            <form action="<?php CONTROLLER_PATH . 'UsuarioController.php' ?>" method="POST">
+                <h2> Crea tu cuenta </h2>
 
-            <div class="row">
-                <label for="" class="">DUI:</label>
-                <input class="" type="text" name="dui" id="" placeholder="12345678-9">
-            </div>
-            <div class="column">
-                <div class="row">
-                    <label for="" class="">Nombres:</label>
-                    <input class="" type="text" name="nombre" id="" placeholder="Carlos Alberto">
+                <input type="hidden" name="codEmpresa" value="NULL">
+                <input type="hidden" name="codRol" value="CLI">
+
+                
+                <div class="row error">
+                    <?=$miControlador->errores?>
                 </div>
+
                 <div class="row">
-                    <label for="" class="">Apellidos:</label>
-                    <input class="" type="text" name="apellido" id="" placeholder="Melendez Arevalo">
+                    <label for="" class="">DUI:</label>
+                    <input class="" type="text" name="dui" id="" placeholder="12345678-9">
                 </div>
-            </div>
-            <div class="column">
-                <div class="row">
-                    <label for="" class="">Teléfono:</label>
-                    <input class="" type="text" name="telefono" id="" placeholder="7295-1065">
+                <div class="column">
+                    <div class="row">
+                        <label for="" class="">Nombres:</label>
+                        <input class="" type="text" name="nombre" id="" placeholder="Carlos Alberto">
+                    </div>
+                    <div class="column error"></div>
+                    <div class="row">
+                        <label for="" class="">Apellidos:</label>
+                        <input class="" type="text" name="apellido" id="" placeholder="Melendez Arevalo">
+                    </div>
                 </div>
-                <div class="row">
-                    <label for="" class="">Correo:</label>
-                    <input class="" type="text" name="correo" id="" placeholder="correo@dominio.com">
+                <div class="column">
+                    <div class="row">
+                        <label for="" class="">Teléfono:</label>
+                        <input class="" type="text" name="telefono" id="" placeholder="7295-1065">
+                    </div>
+                    <div class="row">
+                        <label for="" class="">Correo:</label>
+                        <input class="" type="text" name="correo" id="" placeholder="correo@dominio.com">
+                    </div>
                 </div>
-            </div>
-            <div class="column">
-                <div class="row">
-                    <label for="" class="">Contraseña:</label>
-                    <input class="" type="password" name="password" id="" placeholder="123456">
+                <div class="column">
+                    <div class="row">
+                        <label for="" class="">Contraseña:</label>
+                        <input class="" type="password" name="password" id="" placeholder="123456">
+                    </div>
+                    <div class="row">
+                        <label for="" class="">Repita su contraseña:</label>
+                        <input class="" type="password" name="passwordConfirm" id="" placeholder="123456">
+                    </div>
                 </div>
-                <div class="row">
-                    <label for="" class="">Repita su contraseña:</label>
-                    <input class="" type="password" name="passwordConfirm" id="" placeholder="123456">
+                <div class="third-row">
+                    <button class="button-primary" type="submit" name="accion" value="register">Crear cuenta</button>
+                    <button class="button-a" type="submit" name="redireccion" value="login">¿Tienes cuente? Inicia Sesión</button>
                 </div>
-            </div>
-            <div class="third-row">
-                <button class="button-primary" type="submit" name="accion" value="register">Crear cuenta</button>
-                <button class="button-a" type="submit" name="redireccion" value="login">¿Tienes cuente? Inicia Sesión</button>
-            </div>
-        </form>
+            </form>
     </main>
     <?= footer() ?>
 </body>

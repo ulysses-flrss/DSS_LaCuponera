@@ -3,10 +3,13 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
 require_once(MODEL_PATH.'classOferta.php');
 
-// $codigoCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
-// if($codigoCupon != ""){
-//     $oferta = new OfertasController();
-// }
+
+if(isset($_REQUEST['codigoCupon'])){
+    $codigoCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
+} else {
+    $codigoCupon = "";
+}
+
 
 class OfertasController {
        
@@ -15,14 +18,13 @@ class OfertasController {
     public function __construct(){
 
         $this->cupones = new Oferta();
+        $accion = null;
         $accion = isset($_REQUEST['accion'])?$_REQUEST['accion']:'';
-       
         if($accion == ""){
-
             $this->verCupones();
 
         }else if($accion="verCupon"){
-            //$this->verCupon($codigoCupon);
+            $this->verCupon();
         }
     }
         
@@ -32,9 +34,9 @@ class OfertasController {
         return $listar;
     }
 
-    public function verCupon($codigoCupon){
-        $listar = $this->cupones->listarCupon($codigoCupon);
-
+    public function verCupon(){
+        $listar = $this->cupones->listarCupon(isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'NADA');
+        
         return $listar;
     }
 

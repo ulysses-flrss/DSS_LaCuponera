@@ -126,7 +126,7 @@ class Usuario
 // Metodos
 
     public function getHashedPassword ($correo) {
-        $sql = "SELECT password FROM usuarios WHERE correo=?";
+        $sql = "SELECT correo, password FROM usuarios WHERE correo=?";
         $conn = new Conexion();
         $dbh = $conn->getConexion();
         try {
@@ -134,12 +134,11 @@ class Usuario
             $stmt->bindParam(1, $correo);
             $stmt->execute();
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $usuario['password'];
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
 
-        return $usuario['password'];
+        return $usuario;
     }
 
     
@@ -221,7 +220,7 @@ class Usuario
                 return "Fallo de Autenticación";
             }
         } catch (Exception $e) {
-             return "Error: " . $e->getMessage();
+            return "Error: " . $e->getMessage();
             //return var_dump($usuario);
         }
     }

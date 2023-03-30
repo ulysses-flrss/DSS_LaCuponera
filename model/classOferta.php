@@ -152,7 +152,7 @@ class Oferta {
             return "Error: " . $e->getMessage();
 		}
 
-		if($stmt->rowCount() == 1){
+		if($stmt->rowCount() > 0){
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 				
 				$cupon = new self();
@@ -179,7 +179,7 @@ class Oferta {
 		$sql = " SELECT * FROM oferta WHERE cod_oferta=:cod_oferta";
 		$conn = new Conexion();
         $dbh = $conn->getConexion();
-		$rs = array();
+		$cupon = null;
 		try{
 			$stmt = $dbh->prepare($sql);
 			$stmt->bindParam(':cod_oferta', $codCupon);
@@ -204,11 +204,9 @@ class Oferta {
 				$cupon->setDecripcion($row['descripcion']);
 				$cupon->setEstado($row['estado']);
 				$cupon->setCodEmpresa($row['cod_empresa']);
-
-				array_push($rs, $cupon);
 			}
 		}
-		return $rs;
+		return $cupon;
 	}
     
 }

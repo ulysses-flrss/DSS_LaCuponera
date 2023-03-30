@@ -3,7 +3,9 @@
     include_once(PLUGIN_PATH);
     include_once(CONTROLLER_PATH.'OfertasController.php');
 
+    $accion = "";
     $controller = new OfertasController();
+
     $userActual =$_SESSION['usuario'];
 ?>
 
@@ -25,19 +27,18 @@
         <?php
 
         $cupones = $controller->verCupones();
-
         foreach ($cupones as $cupon) {
-
+        
             echo "
-                    <div class='cupones-tarjeta'>
-                    <h2>".$cupon->getTitulo()."</h2>
-                    <h3>Precio Regular: ".$cupon->getPrecioRegular()."</h3>
-                    <h3>Precio Oferta:".$cupon->getPrecioOferta()."</h3>
-                    <p>Fecha de inicio: ".$cupon->getInicioOferta()."</p>
-                    <p>Fecha Limite: ".$cupon->getFechaLimiteCupon()."</p>
-                    <br>
-                    <a href='view/viewDetalles.php?accion=verCupon&codigoCupon=" .$cupon->getcodOferta()."' class='button-primary'>Ver detalles</a>
-                    </div>";
+                <div class='cupones-tarjeta'>
+                <h2>".$cupon->getTitulo()."</h2>
+                <h3>Precio Regular: ".$cupon->getPrecioRegular()."</h3>
+                <h3>Precio Oferta:".$cupon->getPrecioOferta()."</h3>
+                <p>Fecha de inicio: ".$cupon->getInicioOferta()."</p>
+                <p>Fecha Limite: ".$cupon->getFechaLimiteCupon()."</p>
+                <br>
+                <a href='view/viewDetalles.php?accion=verCupon&codigoCupon=" .$cupon->getcodOferta()."' class='button-primary'>Ver detalles</a>
+                </div>";
         }
         ?>
     </div>
