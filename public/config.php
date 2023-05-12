@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/');
+define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/public/');
 define('CONEXION_PATH', ROOT_PATH.'model/classConexion.php');
 define('CONTROLLER_PATH', ROOT_PATH.'controller/');
 define('MODEL_PATH', ROOT_PATH.'model/');

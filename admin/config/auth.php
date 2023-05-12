@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
 
@@ -35,11 +35,31 @@ return [
     |
     */
 
+    // Definicio de los guardias 
     'guards' => [
-        'web' => [
+        // Guardia para el administrador
+        'admin' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // Guardia para el administrador de empresa ofertante
+        'admin_empresa' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        // Guardia para el cliente
+        'cliente' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        // Guardia para el empleado
+        'empleado' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ]
     ],
 
     /*
