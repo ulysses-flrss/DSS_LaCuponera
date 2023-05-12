@@ -1,5 +1,6 @@
 <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/config.php');
+    session_start();
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/public/config.php');
     include_once(PLUGIN_PATH);
     include_once(CONTROLLER_PATH.'UsuarioController.php');
 ?>
@@ -31,7 +32,7 @@
 
                 
                 <div class="row error">
-                    <?=$errores?>
+                    <?=isset($errores)?$errores:''?>
                 </div>
 
                 <div class="row">

@@ -1,6 +1,6 @@
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/public/config.php');
 require_once(MODEL_PATH.'ConexionModel.php');
 
 

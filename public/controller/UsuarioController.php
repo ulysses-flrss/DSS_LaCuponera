@@ -4,11 +4,11 @@ use UsuarioController as GlobalUsuarioController;
 
 use function PHPSTORM_META\map;
 
-include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/public/config.php');
 
-$accion = isset($_REQUEST['accion'])?$_REQUEST['accion']:'';
 require_once(MODEL_PATH . 'validaciones.php');
 
+$accion = isset($_REQUEST['accion'])?$_REQUEST['accion']:'';
 
 switch($accion) {
     case '': case 'loginView':
@@ -19,6 +19,10 @@ switch($accion) {
         require_once(VIEW_PATH.'viewRegister.php');
         break;
 
+    case 'guestView':
+        require_once(VIEW_PATH.'viewOfertas.php');
+        break;
+
 
     case 'register':
         register();
@@ -27,9 +31,19 @@ switch($accion) {
     case 'login':
         login();
         break;
+
+    case 'logout':
+        logout();
+        break;
+
+    
 }   
 
 function login() {
+    require_once(MODEL_PATH . 'UsuarioModel.php');
+
+    $usuario = new Usuario;
+
     $errores = "";
     $num_errores = 0;
     $correo = isset($_POST['correo'])?$_POST['correo']:'';
@@ -37,27 +51,25 @@ function login() {
     $valCorreo = Validacion::isCorreo($correo);
 
     if ($correo == '' || $password == '') {
-        require_once(VIEW_PATH.'viewLogin.php');
         $errores .= "<p>Ningun campo puede quedar vacio</p>";
+        require_once(VIEW_PATH.'viewLogin.php');
         return $errores;
     }
 
     if($valCorreo == "OK"){
         $usuario->setCorreo($correo);
     } else {
-        require_once(VIEW_PATH.'viewLogin.php');
-        var_dump($valCorreo);
         $errores .= "<p>$valCorreo</p>";
+        require_once(VIEW_PATH.'viewLogin.php');
+        // var_dump($valCorreo);
         return $errores;
     }
 
-
-
     $hashed = $usuario->getHashedPassword($correo);
-    var_dump($hashed);
+    // var_dump($hashed);
     if ($hashed == false) {
-        require_once(VIEW_PATH.'viewLogin.php');
         $errores .= "<p>El correo no está asociado a ninguna cuenta</p>";
+        require_once(VIEW_PATH.'viewLogin.php');
         return $errores;
     } else {
         $usuario->setPassword($hashed['password']);
@@ -66,12 +78,11 @@ function login() {
             $_SESSION['usuario'] = $usuarioActual;
             require_once(VIEW_PATH.'viewOfertas.php');
         } else {
-            require_once(VIEW_PATH.'viewLogin.php');
             $errores .= "<p>Usuario o Contraseña incorrectas</p>";
+            require_once(VIEW_PATH.'viewLogin.php');
             return $errores;
         }
     }
-    echo password_hash($password, PASSWORD_DEFAULT) . "<br>" . $hashed;
 }
 
 
@@ -170,5 +181,12 @@ function register() {
     //    Mostrar mensaje de error de autentificación   
         require_once(VIEW_PATH . 'viewRegister.php');
     }
+}
+
+function logout() {
+    $_SESSION['usuario'] = null;
+    session_unset();
+    session_destroy();
+    header('location: index.php');
 }
 

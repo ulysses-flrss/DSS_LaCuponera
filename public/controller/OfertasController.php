@@ -1,45 +1,34 @@
 <?php 
+session_start();
+include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/public/config.php');
+require_once(MODEL_PATH.'OfertaModel.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
-require_once(MODEL_PATH.'classOferta.php');
+$accion = isset($_REQUEST['accion_oferta'])?$_REQUEST['accion_oferta']:'';
+$codCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
+
+switch ($accion) {
+    case '':
+        $oferta = new Oferta;
+        $ofertas = $oferta->listarCupones();
+        return $ofertas;
+        break;
+    
+    case 'verCupon':
+        $oferta = new Oferta;
+        $oferta_selected = $oferta->listarCupon($codCupon);
+        require_once(VIEW_PATH.'viewDetalles.php');
+        break;
+        
+    case 'regresar':
+        $oferta = new Oferta;
+        $ofertas = $oferta->listarCupones();
+        header('location: ');
+        break;
 
 
-if(isset($_REQUEST['codigoCupon'])){
-    $codigoCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
-} else {
-    $codigoCupon = "";
+    default:
+        return "HOLA";
+        break;
 }
 
-
-class OfertasController {
-       
-    private $cupones;
-    public $codCupon;
-
-    public function __construct(){
-        $this->codCupon = "";
-        $this->cupones = new Oferta();
-        $accion = isset($_REQUEST['accion'])?$_REQUEST['accion']:'';
-        if($accion == ""){
-            $this->verCupones();
-
-        }else if($accion="verCupon"){
-            $this->verCupon();
-            
-        }
-    }
-        
-    public function verCupones(){
-        $listar = $this->cupones->listarCupones();
-
-        return $listar;
-    }
-
-    public function verCupon(){
-        $listar = $this->cupones->listarCupon($this->codCupon);
-        
-        return $listar;
-    }
-
-}
 ?>

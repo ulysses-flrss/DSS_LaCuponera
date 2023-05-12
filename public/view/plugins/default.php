@@ -1,5 +1,5 @@
 <?php 
-include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/public/config.php');
 function head() {
     return <<<EOD
         <link rel="stylesheet" href="view/css/root-style.css" crossorigin="anoymous">
