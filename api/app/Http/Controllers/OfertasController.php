@@ -17,6 +17,44 @@ class OfertasController extends Controller
         return $ofertas;
     }
 
+
+
+    // Estado -> Espera (aun no ha aprobada/rechazada)
+    public function EsperaAprobacion(){
+        $ofertas = DB::table('oferta')->where('estado', 'Espera')->get();
+        return $ofertas;
+    }
+
+    // Estado -> Futura (aprobada y NO en el rango de fecha)
+    public function FuturaAprobacion(){
+        $ofertas = DB::table('oferta')->where('estado', 'Futura')->get();
+        return $ofertas;
+    }
+
+    // Estado -> Activa (aprobada y en el rango de fecha)
+    public function OfertaActiva(){
+        $ofertas = DB::table('oferta')->where('estado', 'Activa')->get();
+        return $ofertas;
+    }
+
+    // Estado -> Pasada (fue aprobada, pero ya llego al fin de oferta)
+    public function OfertaPasada(){
+        $ofertas = DB::table('oferta')->where('estado', 'Pasada')->get();
+        return $ofertas;
+    }
+
+    // Estado -> Rechazada (fue rechazada)
+    public function OfertaRechazada(){
+        $ofertas = DB::table('oferta')->where('estado', 'Rechazada')->get();
+        return $ofertas;
+    }
+    
+    // Estado -> Descartada (quitada por adminOfertas)
+    public function OfertaDescartada(){
+        $ofertas = DB::table('oferta')->where('estado', 'Descartada')->get();
+        return $ofertas;
+    }
+
     /**
      * Show the form for creating a new resource.
      */

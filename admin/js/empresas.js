@@ -24,7 +24,7 @@ async function printEmpresas () {
     let empresas = await getEmpresas();
     let $myTable = document.getElementById("myTable");
     
-    editoriales.forEach(element => {
+    empresas.forEach(element => {
         let $tr = document.createElement("tr");
         $tr.innerHTML = 
         `   <td>${element['cod_empresa']}</td>
