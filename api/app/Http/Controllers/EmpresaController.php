@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller
 {
@@ -12,7 +13,9 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
+        $empresas = DB::table('empresa')->get();
+        return $empresas;
+        
     }
 
     /**
@@ -38,7 +41,6 @@ class EmpresaController extends Controller
             'cod_rubro' => 'required|max:1'
         ]);
 
-
         $empresa = new Empresa();
         $empresa->cod_empresa = $request->input('cod_empresa');
         $empresa->nombre = $request->input('nombre');
@@ -55,7 +57,8 @@ class EmpresaController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //
+        $empresa_show = Empresa::find($empresa->cod_empresa);
+        return $empresa_show;
     }
 
     /**
@@ -71,7 +74,24 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        $request->validate([
+            'cod_empresa' => 'required|regex:/^\w{3}\d{3}$/|unique:empresa',
+            'nombre' => 'required|max:255',
+            'direccion' => 'required|max:255',
+            'telefono' => 'required|regex:/^[2|6|7]{1}\d{3}-\d{4}$/|unique:empresa',
+            'correo' => 'required|unique:empresa|email',
+            'comision' => 'required|number',
+            'cod_rubro' => 'required|max:1'
+        ]);
+
+        $edit_empresa = $empresa;
+        $edit_empresa->cod_empresa = $request->input('cod_empresa');
+        $edit_empresa->nombre = $request->input('nombre');
+        $edit_empresa->direccion = $request->input('direccion');
+        $edit_empresa->telefono = $request->input('telefono');
+        $edit_empresa->correo = $request->input('comision');
+        $edit_empresa->cod_rubro = $request->input('cod_rubro');
+        $edit_empresa->save();
     }
 
     /**

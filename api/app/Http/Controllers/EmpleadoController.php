@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Usuario;
 
 class EmpleadoController extends Controller
 {
@@ -13,7 +14,8 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        $empresas = DB::table('empleado')->get();
+        return $empresas;
     }
 
     /**
@@ -57,7 +59,8 @@ class EmpleadoController extends Controller
      */
     public function show(User $usuario)
     {
-        //
+        $usuario_show = User::find($usuario->id);
+        return $usuario_show;
     }
 
     /**
@@ -73,7 +76,27 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, User $usuario)
     {
-        //
+        $request->validate([
+            'correo' => 'required|unique:empresa|email',
+            'password'=>'required',
+            'dui'=>'required|unique:usuario|regex:/^\d{8}-\d{1}$/',
+            'nombres' => 'required|max:255',
+            'apellidos' => 'required|max:255',
+            'telefono' => 'required|regex:/^[2|6|7]{1}\d{3}-\d{4}$/|unique:usuario',
+            'cod_empresa' => 'required',
+            'cod_rol' => 'required'
+        ]);
+
+
+        $empleado = new User();
+        $empleado->correo = $request->input('correo');
+        $empleado->password = $request->input('password');
+        $empleado->nombres = $request->input('nombres');
+        $empleado->apellidos = $request->input('apellidos');
+        $empleado->telefono = $request->input('telefono');
+        $empleado->cod_empresa = $request->input('cod_empresa');
+        $empleado->cod_rol = $request->input('cod_rol');
+        $empleado->save();
     }
 
     /**
