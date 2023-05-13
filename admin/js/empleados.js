@@ -24,7 +24,7 @@ async function printEmpleados () {
     let empleado = await getEmpleados();
     let $myTable = document.getElementById("myTable");
     
-    editoriales.forEach(element => {
+    empleado.forEach(element => {
         let $tr = document.createElement("tr");
         $tr.innerHTML = 
         `   <td>${element['cod_usuario']}</td>
@@ -35,8 +35,8 @@ async function printEmpleados () {
             <td>${element['correo']}</td>
             <td>${element['cod_empresa']}</td>
             <td>
-                <a href='modify.html?id=${element['cod_usuario']}' class="waves-effect waves-light btn">Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_usuario']}')" class="waves-effect waves-light btn">Eliminar</a>
+                <a href='EditarEmpleado.html?id=${element['cod_usuario']}' class="waves-effect waves-light btn">Modificar</a>
+                <a href='#' onclick="deleteEmpleado('${element['cod_usuario']}')" class="waves-effect waves-light btn">Eliminar</a>
             </td>
         `
 
@@ -113,4 +113,61 @@ async function showEmpleado (id) {
             document.getElementById("cod_empresa").value = miEditorial.cod_empresa
 
     }, 0);
+}
+
+async function updateEmpleado () {
+    let btnUpdateEmpleado = document.getElementById("update-empleado")
+
+    btnUpdateEmpleado.addEventListener("click", (e)=> {
+        e.preventDefault()
+    })
+
+    let param = new URLSearchParams(window.location.search);
+    let id = param.get("id");
+
+
+    let url = `http://localhost:8000/api/empleados/${id}`
+    // const jsonData = await response.json()
+    let empleado = {
+        "cod_usuario": document.getElementById("cod_usuario").value,
+        "nombres": document.getElementById("nombres").value,
+        "apellidos": document.getElementById("apellidos").value,
+        "telefono": document.getElementById("telefono").value,
+        "dui": document.getElementById("dui").value,
+        "correo": document.getElementById("correo").value,
+        "cod_empresa": document.getElementById("cod_empresa").value,
+    }
+
+    console.log(empleado)
+    const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify(empleado),
+    })
+    if (response.ok) {
+        window.location.href = "Empleados.html"
+    } else {
+        alert(response.error)
+    }
+}
+
+async function deleteEmpleado (id) {
+    let eliminar = confirm(`Seguro que desea eliminar este Empleado? ${id}`)
+
+    if (eliminar) {
+        let url = `http://localhost:8000/api/empleado/${id}`
+        // const jsonData = await response.json()
+        const response = await fetch(url, {
+            method: "DELETE",
+        })
+
+        if (response.ok) {
+            console.log(response)
+            window.location.href = "Empleados.html"
+        } else {
+            console.error(response.error)
+        }
+    }
 }
