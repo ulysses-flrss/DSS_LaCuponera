@@ -6,33 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/root-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title>Agregar</title>
+    <title>Modificar</title>
 </head>
 <body>
-    
     <div class="row">
-        <h1>Ingresa una nueva Empresa</h1>
-        <br>
+        <h1>Modifica los datos del Empleado</h1>
         <form action="" class="col s12" method="POST">
+
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="id">Codigo de Empresa:</label>
+                    <label for="id">Codigo de Empleado:</label>
                     <input type="text" readonly name="id" id="id" class="validate">
                 </div>
                 
-                <div class="input-field col s6">
-                    <label for="name">Nombre de la Empresa:</label>
+                <div class="input-field col s12">
+                    <label for="id">Nombres:</label>
+                    <input type="text" readonly name="id" id="id" class="validate">
+                </div>
+                
+                <div class="input-field col s12">
+                    <label for="name">Apellidos:</label>
                     <input type="text" name="name" id="name"  class="validate">
                 </div>
     
-                <div class="input-field col s6">
-                    <label for="direccion">Direccion:</label>
-                    <input type="text" name="direccion" id="direccion" class="validate">
+                <div class="input-field col s12">
+                    <label for="telegono">Telefono:</label>
+                    <input type="text" name="telegono" id="telegono" class="validate">
                 </div>
     
                 <div class="input-field col s12">
-                    <label for="telefono">Telefono:</label>
-                    <input type="text" name="telefono" id="telefono" class="validate">
+                    <label for="dui">DUI:</label>
+                    <input type="text" name="dui" id="dui" class="validate">
                 </div>
 
                 <div class="input-field col s12">
@@ -41,18 +45,13 @@
                 </div>
 
                 <div class="input-field col s12">
-                    <label for="comision">Comision:</label>
-                    <input type="text" name="comision" id="comision" class="validate">
-                </div>
-
-                <div class="input-field col s12">
-                    <label for="rubro">Rubro:</label>
-                    <input type="text" name="rubro" id="rubro" class="validate">
+                    <label for="cod_empresa">Codigo de Empresa:</label>
+                    <input type="text" name="cod_empresa" id="cod_empresa" class="validate">
                 </div>
     
-                <div>
-                    <input type="submit" value="Registrar Empresa" class="waves-effect waves-light btn">
-                </div>
+                
+                
+                    <input type="submit" value="Modificar Empleado" class="waves-effect waves-light btn">
             </div>
         </form>
     </div>

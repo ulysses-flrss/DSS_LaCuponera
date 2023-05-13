@@ -1,0 +1,11 @@
+#agregar{
+    margin: 15px;
+}
+
+#eliminar, #modificar{
+    margin: 5px;
+}
+
+h1{
+    text-align: center;
+}
