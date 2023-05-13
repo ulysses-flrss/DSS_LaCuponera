@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/root-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Modificar</title>
 </head>
 <body>
     <div class="row">
-        <h1>Modifica datos de la Empresa</h1>
+        <h1>Modifica los datos de la Empresa</h1>
         <form action="" class="col s12" method="POST">
 
             <div class="row">
@@ -29,31 +31,33 @@
     
                 <div class="input-field col s12">
                     <label for="telefono">Telefono:</label>
-                    <input type="telefono" name="telefono" id="telefono" class="validate">
+                    <input type="text" name="telefono" id="telefono" class="validate">
                 </div>
 
                 <div class="input-field col s12">
                     <label for="email">Correo:</label>
-                    <input type="email" name="email" id="email" class="validate">
+                    <input type="text" name="email" id="email" class="validate">
                 </div>
 
                 <div class="input-field col s12">
                     <label for="comision">Comision:</label>
-                    <input type="comision" name="comision" id="comision" class="validate">
+                    <input type="text" name="comision" id="comision" class="validate">
                 </div>
 
                 <div class="input-field col s12">
                     <label for="rubro">Rubro:</label>
-                    <input type="rubro" name="rubro" id="rubro" class="validate">
+                    <input type="text" name="rubro" id="rubro" class="validate">
                 </div>
     
                 
                 
-                    <input type="submit" value="Modificar Cliente" class="waves-effect waves-light btn">
+                    <input type="submit" value="Modificar Empresa" class="waves-effect waves-light btn">
             </div>
         </form>
     </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/materialize.js"></script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/root-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Agregar</title>
+</head>
+<body>
+    
+    <div class="row">
+        <h1>Ingresa una nueva Empresa</h1>
+        <br>
+        <form action="" class="col s12" method="POST">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="id">Codigo de Empresa:</label>
+                    <input type="text" readonly name="id" id="id" class="validate">
+                </div>
+                
+                <div class="input-field col s6">
+                    <label for="name">Nombre de la Empresa:</label>
+                    <input type="text" name="name" id="name"  class="validate">
+                </div>
+    
+                <div class="input-field col s6">
+                    <label for="direccion">Direccion:</label>
+                    <input type="text" name="direccion" id="direccion" class="validate">
+                </div>
+    
+                <div class="input-field col s12">
+                    <label for="telefono">Telefono:</label>
+                    <input type="text" name="telefono" id="telefono" class="validate">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="email">Correo:</label>
+                    <input type="text" name="email" id="email" class="validate">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="comision">Comision:</label>
+                    <input type="text" name="comision" id="comision" class="validate">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="rubro">Rubro:</label>
+                    <input type="text" name="rubro" id="rubro" class="validate">
+                </div>
+    
+                <div>
+                    <input type="submit" value="Registrar Empresa" class="waves-effect waves-light btn">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/materialize.js"></script>
+</body>
+</html>
