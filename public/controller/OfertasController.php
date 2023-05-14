@@ -5,6 +5,7 @@ require_once(MODEL_PATH.'OfertaModel.php');
 
 $accion = isset($_REQUEST['accion_oferta'])?$_REQUEST['accion_oferta']:'';
 $codCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
+$termino = isset($_REQUEST['termino'])?$_REQUEST['termino']:'';
 
 switch ($accion) {
     case '':
@@ -23,6 +24,12 @@ switch ($accion) {
         $oferta = new Oferta;
         $ofertas = $oferta->listarCupones();
         header('location: ');
+        break;
+
+    case 'buscar':
+        $oferta = new Oferta;
+        $ofertas = $oferta->buscarCupones($termino);
+        require_once(VIEW_PATH. 'viewOfertas.php');
         break;
 
 
