@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Agregar</title>
+</head>
+<body>
+    <div class="row" style="padding: 30px;">
+        <h1 style="text-align: center;">Ingresa una nueva Oferta</h1>
+        <br>
+        <form action="" class="col s12" method="POST">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="titulo">Titulo:</label>
+                    <input type="text" name="titulo" id="titulo" class="validate">
+                </div>
+                
+                <div class="input-field col s12">
+                    <label for="precio_regular">Precio Regular:</label>
+                    <input type="number" step="0.01" name="precio_regular" id="precio_regular"  class="validate">
+                </div>
+    
+                <div class="input-field col s12">
+                    <label for="precio_oferta">Precio Oferta:</label>
+                    <input type="number" step="0.01" name="precio_oferta" id="precio_oferta" class="validate">
+                </div>
+    
+                <div class="input-field col s12">
+                    <label for="inicio_oferta">Inicio de la Oferta:</label>
+                    <input type="text" name="inicio_oferta" id="inicio_oferta" class="datepicker">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="fin_oferta">Fin de la oferta:</label>
+                    <input type="text" name="fin_oferta" id="fin_oferta" class="datepicker">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="fechaLimite_cupon">Fecha Limite del Cupon:</label>
+                    <input type="text" name="fechaLimite_cupon" id="fechaLimite_cupon" class="datepicker">
+                </div>
+                
+                <div class="input-field col s12">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="text" name="cantidad" id="cantidad" class="validate">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="descripcion">Descripcion:</label>
+                    <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="materialize-textarea"></textarea>
+                </div>
+                <div class="input-field col s12">
+                    <label for="estado">Estado:</label>
+                    <input type="text" name="estado" id="estado" class="validate">
+                </div>
+
+                <div class="input-field col s12">
+                    <label for="cod_empresa">Codigo de Empresa:</label>
+                    <input type="text" name="cod_empresa" id="cod_empresa" class="validate">
+                </div>
+               
+
+                <div>
+                    <input type="submit" value="Registrar Oferta" class="waves-effect waves-light btn" id="add-empleado">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../../../js/materialize.js"></script>
+</body>
+</html>

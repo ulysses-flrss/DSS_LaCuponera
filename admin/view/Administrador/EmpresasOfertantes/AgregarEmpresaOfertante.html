@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/root-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Agregar</title>
 </head>
 <body>
     
-    <div class="row">
-        <h1>Ingresa una nueva Empresa</h1>
+    <div class="row" style="padding: 30px;">
+        <h1 style="text-align: center;">Ingresa una nueva Empresa</h1>
         <br>
         <form action="" class="col s12" method="POST">
             <div class="row">
                 <div class="input-field col s12">
                     <label for="id">Codigo de Empresa:</label>
-                    <input type="text" readonly name="id" id="id" class="validate">
+                    <input type="text"  name="cod_empresa" id="cod_empresa" class="validate">
                 </div>
                 
                 <div class="input-field col s6">
                     <label for="name">Nombre de la Empresa:</label>
-                    <input type="text" name="name" id="name"  class="validate">
+                    <input type="text" name="nombre" id="nombre" class="validate">
                 </div>
     
                 <div class="input-field col s6">
@@ -37,7 +36,7 @@
 
                 <div class="input-field col s12">
                     <label for="email">Correo:</label>
-                    <input type="text" name="email" id="email" class="validate">
+                    <input type="text" name="correo" id="correo" class="validate">
                 </div>
 
                 <div class="input-field col s12">
@@ -47,11 +46,13 @@
 
                 <div class="input-field col s12">
                     <label for="rubro">Rubro:</label>
-                    <input type="text" name="rubro" id="rubro" class="validate">
+                    <select name="cod_rubro" id="cod_rubro">
+                        <option value="1">dasda</option>
+                    </select>
                 </div>
     
                 <div>
-                    <input type="submit" value="Registrar Empresa" class="waves-effect waves-light btn">
+                    <input id="add-empresa" type="submit" value="Registrar Empresa" class="waves-effect waves-light btn">
                 </div>
             </div>
         </form>
@@ -59,6 +60,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/materialize.js"></script>
+    <script src="../../../js/materialize.js"></script>
+    <script src="../../../js/empresas.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class EmpresaController extends Controller
 {
@@ -13,7 +14,8 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = DB::table('empresa')->get();
+        // $empresas = DB::table('empresa')->get();
+        $empresas = DB::select("SELECT * FROM empresa INNER JOIN rubro ON empresa.cod_rubro=rubro.cod_rubro");
         return $empresas;
         
     }
@@ -31,34 +33,38 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'cod_empresa' => 'required|regex:/^\w{3}\d{3}$/|unique:empresa',
-            'nombre' => 'required|max:255',
-            'direccion' => 'required|max:255',
-            'telefono' => 'required|regex:/^[2|6|7]{1}\d{3}-\d{4}$/|unique:empresa',
-            'correo' => 'required|unique:empresa|email',
-            'comision' => 'required|number',
-            'cod_rubro' => 'required|max:1'
+        $validator = Validator::make($request->all(),[
+            'cod_empresa' => ['required','regex:/^\w{3}\d{3}$/','unique:empresa'],
+            'nombre' => ['required','max:255'],
+            'direccion' => ['required','max:255'],
+            'telefono' => ['required','regex:/^[2|6|7]{1}\d{3}-\d{4}$/','unique:empresa'],
+            'correo' => ['required','unique:empresa','email'],
+            'comision' => ['required'],
+            'cod_rubro' => ['required','max:1']
         ]);
 
-        $empresa = new Empresa();
-        $empresa->cod_empresa = $request->input('cod_empresa');
-        $empresa->nombre = $request->input('nombre');
-        $empresa->direccion = $request->input('direccion');
-        $empresa->telefono = $request->input('telefono');
-        $empresa->correo = $request->input('comision');
-        $empresa->cod_rubro = $request->input('cod_rubro');
-        $empresa->save();
-
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        } else {
+            $empresa = new Empresa();
+            $empresa->cod_empresa = $request->input('cod_empresa');
+            $empresa->nombre = $request->input('nombre');
+            $empresa->direccion = $request->input('direccion');
+            $empresa->telefono = $request->input('telefono');
+            $empresa->correo = $request->input('comision');
+            $empresa->comision = $request->input('comision');
+            $empresa->cod_rubro = $request->input('cod_rubro');
+            $empresa->save();
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Empresa $empresa)
+    public function show(string $id)
     {
-        $empresa_show = Empresa::find($empresa->cod_empresa);
-        return $empresa_show;
+        $empresa = DB::table('empresa')->where('cod_empresa', $id)->get();
+        return $empresa;
     }
 
     /**
@@ -72,33 +78,29 @@ class EmpresaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(Request $request, string $id)
     {
-        $request->validate([
-            'cod_empresa' => 'required|regex:/^\w{3}\d{3}$/|unique:empresa',
-            'nombre' => 'required|max:255',
-            'direccion' => 'required|max:255',
-            'telefono' => 'required|regex:/^[2|6|7]{1}\d{3}-\d{4}$/|unique:empresa',
-            'correo' => 'required|unique:empresa|email',
-            'comision' => 'required|number',
-            'cod_rubro' => 'required|max:1'
-        ]);
 
-        $edit_empresa = $empresa;
-        $edit_empresa->cod_empresa = $request->input('cod_empresa');
-        $edit_empresa->nombre = $request->input('nombre');
-        $edit_empresa->direccion = $request->input('direccion');
-        $edit_empresa->telefono = $request->input('telefono');
-        $edit_empresa->correo = $request->input('comision');
-        $edit_empresa->cod_rubro = $request->input('cod_rubro');
-        $edit_empresa->save();
+        $empresa = [
+            'cod_empresa' => $id,
+            'nombre' => $request->nombre,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'correo' => $request->correo,
+            'comision' => $request->comision,
+            'cod_rubro' => $request->cod_rubro
+        ];
+
+        return DB::update('UPDATE empresa SET nombre=:nombre, direccion=:direccion,telefono=:telefono, correo=:correo,comision=:comision, cod_rubro=:cod_rubro WHERE cod_empresa=:cod_empresa', $empresa);
+
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Empresa $empresa)
+    public function destroy(string $id)
     {
-        $empresa->delete();
+        DB::delete('DELETE FROM empresa WHERE cod_empresa=:cod_empresa', ['cod_empresa'=>$id]);
     }
 }

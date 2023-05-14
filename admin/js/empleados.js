@@ -1,3 +1,26 @@
+
+    if (document.getElementById("add-empleado")) {
+        let btnAddEmpleado = document.getElementById("add-empleado")
+    
+        btnAddEmpleado.addEventListener("click", e => {
+            e.preventDefault()
+            insertEmpleado()
+        })
+    }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let btnUpdateEmpleado = document.getElementById("update-empleado")
+
+    btnUpdateEmpleado.addEventListener("click", (e)=> {
+        e.preventDefault()
+        updateEmpleado()
+    })
+})
+
+
+
+
 async function getEmpleados () {
     const url = 'http://localhost:8000/api/empleado'
     const response = await fetch(url)
@@ -7,7 +30,7 @@ async function getEmpleados () {
         let miEmpleado = {
             "cod_usuario": element['cod_usuario'],
             "nombres": element['nombres'],
-            "apellidos": element['nombres'],
+            "apellidos": element['apellidos'],
             "telefono": element['telefono'],
             "dui": element['dui'],
             "correo": element['correo'],
@@ -45,20 +68,19 @@ async function printEmpleados () {
 }
 
 async function insertEmpleado () {
-    let btnAddEmpleado = document.getElementById("add-empleado")
 
-    btnAddEmpleado.addEventListener("click", (e)=> {
-        e.preventDefault()
-    })
 
     let empleado = {
+        "correo": document.getElementById("correo").value,
+        "password": document.getElementById("password").value,
+        "dui": document.getElementById("dui").value,
         "nombres": document.getElementById("nombres").value,
         "apellidos": document.getElementById("apellidos").value,
         "telefono": document.getElementById("telefono").value,
-        "dui": document.getElementById("dui").value,
-        "correo": document.getElementById("correo").value,
         "cod_empresa": document.getElementById("cod_empresa").value,
+        "cod_rol": document.getElementById("cod_rol").value
     }
+    
     const url = 'http://localhost:8000/api/empleado'
     const response = await fetch(url, {
         method: "POST",
@@ -68,7 +90,7 @@ async function insertEmpleado () {
         body: JSON.stringify(empleado),
     })
 
-    console.log(empleado)
+    console.log(response)
     if (response.ok) {
         window.location.href = "Empleados.html"
     } else {
@@ -76,7 +98,7 @@ async function insertEmpleado () {
     }
 }
 
-async function showEmpleado (id) {
+async function showEmpleado () {
     let param = new URLSearchParams(window.location.search);
     let id = param.get("id");
 
@@ -86,56 +108,51 @@ async function showEmpleado (id) {
         method: "GET",
     })
     const jsonData = await response.json()
+
     setTimeout(() => {
         
         let miEmpleado = {
-            "cod_usuario": jsonData ['cod_usuario'],
-            "nombres": jsonData['nombres'],
-            "apellidos": jsonData['apellidos'],
-            "telefono": jsonData['telefono'],
-            "dui": jsonData['dui'],
-            "correo": jsonData['correo'],
-            "cod_empresa": jsonData['cod_empresa'],
+
+            "correo": jsonData[0].correo,
+            "password": jsonData[0].password,
+            "dui": jsonData[0].dui,
+            "nombres": jsonData[0].nombres,
+            "apellidos": jsonData[0].apellidos,
+            "telefono": jsonData[0].telefono,
+            "cod_empresa": jsonData[0].cod_empresa,
+            "cod_rol":jsonData[0].cod_rol
         }
-        console.log(miEmpleado)
+
         
         
-            document.getElementById("nombres").value = miEditorial.nombres
-    
-            document.getElementById("apellidos").value = miEditorial.apellidos
-    
-            document.getElementById("telefono").value = miEditorial.telefono
-    
-            document.getElementById("dui").value = miEditorial.dui
-
-            document.getElementById("correo").value = miEditorial.correo
-
-            document.getElementById("cod_empresa").value = miEditorial.cod_empresa
-
+            document.getElementById("correo").value = miEmpleado.correo
+            document.getElementById("password").value = miEmpleado.password
+            document.getElementById("dui").value = miEmpleado.dui
+            document.getElementById("nombres").value = miEmpleado.nombres
+            document.getElementById("apellidos").value = miEmpleado.apellidos
+            document.getElementById("telefono").value = miEmpleado.telefono
+            document.getElementById("cod_empresa").value = miEmpleado.cod_empresa
+            document.getElementById("cod_rol").value = miEmpleado.cod_rol
     }, 0);
 }
 
 async function updateEmpleado () {
-    let btnUpdateEmpleado = document.getElementById("update-empleado")
-
-    btnUpdateEmpleado.addEventListener("click", (e)=> {
-        e.preventDefault()
-    })
-
+   
     let param = new URLSearchParams(window.location.search);
     let id = param.get("id");
 
 
-    let url = `http://localhost:8000/api/empleados/${id}`
+    let url = `http://localhost:8000/api/empleado/${id}`
     // const jsonData = await response.json()
     let empleado = {
-        "cod_usuario": document.getElementById("cod_usuario").value,
+        "correo": document.getElementById("correo").value,
+        "password": document.getElementById("password").value,
+        "dui": document.getElementById("dui").value,
         "nombres": document.getElementById("nombres").value,
         "apellidos": document.getElementById("apellidos").value,
         "telefono": document.getElementById("telefono").value,
-        "dui": document.getElementById("dui").value,
-        "correo": document.getElementById("correo").value,
         "cod_empresa": document.getElementById("cod_empresa").value,
+        "cod_rol": document.getElementById("cod_rol").value,
     }
 
     console.log(empleado)
@@ -146,10 +163,11 @@ async function updateEmpleado () {
           },
         body: JSON.stringify(empleado),
     })
+    console.log(response)
     if (response.ok) {
         window.location.href = "Empleados.html"
     } else {
-        alert(response.error)
+        console.log(response.error)
     }
 }
 
@@ -164,7 +182,6 @@ async function deleteEmpleado (id) {
         })
 
         if (response.ok) {
-            console.log(response)
             window.location.href = "Empleados.html"
         } else {
             console.error(response.error)

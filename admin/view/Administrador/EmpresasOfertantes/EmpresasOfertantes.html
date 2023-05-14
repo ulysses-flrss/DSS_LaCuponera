@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/root-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="../../../js/empresas.js"></script>
     <title>Empresa Ofertante</title>
 </head>
 
-<body>
-    <h1>Empresas Ofertantes</h1>
+<body style="padding: 30px;">
+    <h1 style="text-align: center;">Empresas Ofertantes</h1>
     <div>
-        <a href="" class="waves-effect waves-light btn" id="agregar">Agregar Empresa</a>
-        <table class="striped">
+        <a href="AgregarEmpresaOfertante.html" class="waves-effect waves-light btn" id="agregar" style=" margin: 15px;">Agregar Empresa</a>
+        <table class="striped" id="myTable">
             <thead>
                 <th>Codigo de Empresa:</th>
                 <th>Nombre de la Empresa:</th>
@@ -26,24 +27,9 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                    <td>
-                        <form method="POST" action="">
-                            <button type="submit" class="waves-effect waves-light btn" id="eliminar">Eliminar</button>
-                        </form>
-                        <form method="GET" action="">
-                            <button type="submit" class="waves-effect waves-light btn" id="modificar">Modificar</button>
-                        </form>
-                    </td>
-                </tr>
+                <script>
+                    printEmpresas()
+                </script>    
             </tbody>
         </table>
     </div>

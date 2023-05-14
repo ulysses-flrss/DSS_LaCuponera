@@ -4,26 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/root-style.css">
+    <script src="../../../js/empleados.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Modificar</title>
 </head>
 <body>
-    <div class="row">
-        <h1>Modifica los datos del Empleado</h1>
+    <div class="row" style="padding: 30px;">
+        <h1 style="text-align: center;">Modifica los datos del Empleado</h1>
         <form action="" class="col s12" method="POST">
 
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="cod_usuario">Codigo de Empleado:</label>
-                    <input type="text" readonly name="cod_usuario" id="cod_usuario" class="validate">
+                    <label for="email">Correo:</label>
+                    <input type="text" name="correo" id="correo" class="validate">
                 </div>
-                
+
+                <input type="hidden" name="password" id="password" value="">
+
+                    
+                <div class="input-field col s12">
+                    <label for="dui">DUI:</label>
+                    <input type="text" name="dui" id="dui" class="validate">
+                </div>
+
                 <div class="input-field col s12">
                     <label for="id">Nombres:</label>
-                    <input type="text" readonly name="nombres" id="nombres" class="validate">
+                    <input type="text" name="nombres" id="nombres" class="validate">
                 </div>
                 
+
                 <div class="input-field col s12">
                     <label for="name">Apellidos:</label>
                     <input type="text" name="apellidos" id="apellidos"  class="validate">
@@ -33,31 +42,25 @@
                     <label for="telefono">Telefono:</label>
                     <input type="text" name="telefono" id="telefono" class="validate">
                 </div>
-    
-                <div class="input-field col s12">
-                    <label for="dui">DUI:</label>
-                    <input type="text" name="dui" id="dui" class="validate">
-                </div>
 
-                <div class="input-field col s12">
-                    <label for="email">Correo:</label>
-                    <input type="text" name="email" id="email" class="validate">
-                </div>
+                <input type="hidden" name="cod_empresa" id="cod_empresa" class="validate" value="">
+                <input type="hidden" name="cod_rol" id="cod_rol" class="validate" value="">
 
-                <div class="input-field col s12">
-                    <label for="cod_empresa">Codigo de Empresa:</label>
-                    <input type="text" name="cod_empresa" id="cod_empresa" class="validate">
-                </div>
     
                 
                 
-                    <input type="submit" value="Modificar Empleado" onclick="updateEmpleado()" class="waves-effect waves-light btn" id="update-empleado">
+                    <input type="submit" value="Modificar Empleado"class="waves-effect waves-light btn" id="update-empleado">
             </div>
         </form>
     </div>
 
 
+    <script>
+            showEmpleado();        
+    </script>
+
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/materialize.js"></script>
+    <script src="../../../js/materialize.js"></script>
 </body>
 </html>

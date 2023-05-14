@@ -1,3 +1,24 @@
+
+if (document.getElementById("add-empresa")) {
+    let btnAddEmpresa = document.getElementById("add-empresa")
+
+    btnAddEmpresa.addEventListener("click", e => {
+        e.preventDefault()
+        insertEmpresa()
+    })
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+let btnUpdateEmpresa = document.getElementById("update-empresa")
+
+btnUpdateEmpresa.addEventListener("click", (e)=> {
+    e.preventDefault()
+    updateEmpresa()
+})
+})
+
+
 async function getEmpresas () {
     const url = 'http://localhost:8000/api/empresa'
     const response = await fetch(url)
@@ -12,6 +33,7 @@ async function getEmpresas () {
             "correo": element['correo'],
             "comision": element['comision'],
             "cod_rubro": element['cod_rubro'],
+            "rubro": element['rubro'],
         }
 
         empresas.push(miEmpresa)
@@ -32,10 +54,11 @@ async function printEmpresas () {
             <td>${element['direccion']}</td>
             <td>${element['telefono']}</td>
             <td>${element['correo']}</td>
-            <td>${element['comision']}</td>
+            <td>${element['comision']}%</td>
+            <td>${element['rubro']}</td>
             <td>
-                <a href='modify.html?id=${element['cod_empresa']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_empresa']}')">Eliminar</a>
+            <a href='EditarEmpresaOfertante.html?id=${element['cod_empresa']}' class="waves-effect waves-light btn">Modificar</a>
+            <a href='#' onclick="deleteEmpresa('${element['cod_empresa']}')" class="waves-effect waves-light btn">Eliminar</a>
             </td>
         `
 
@@ -44,17 +67,15 @@ async function printEmpresas () {
 }
 
 async function insertEmpresa () {
-    let btnAddEmpresa = document.getElementById("add-empresa")
-
-    btnAddEmpresa.addEventListener("click", (e)=> {
-        e.preventDefault()
-    })
 
     let empresa = {
-        "codigo_editorial": document.getElementById("codigo_editorial").value,
-        "nombre_editorial": document.getElementById("nombre_editorial").value,
-        "contacto": document.getElementById("contacto").value,
+        "cod_empresa": document.getElementById("cod_empresa").value,
+        "nombre": document.getElementById("nombre").value,
+        "direccion": document.getElementById("direccion").value,
         "telefono": document.getElementById("telefono").value,
+        "correo": document.getElementById("correo").value,
+        "comision": document.getElementById("comision").value,
+        "cod_rubro": document.getElementById("cod_rubro").value,
     }
     const url = 'http://localhost:8000/api/empresa'
     const response = await fetch(url, {
@@ -64,17 +85,17 @@ async function insertEmpresa () {
         },
         body: JSON.stringify(empresa),
     })
-
-    console.log(empresa)
+    console.log(JSON.stringify(empresa))
+    console.log(response)
     if (response.ok) {
-        window.location.href = "index.html"
+        window.location.href = "EmpresasOfertantes.html"
     } else {
-        alert(response.error)
+        console.log(response.error)
     }
 }
 
 
-async function showEmpresa (id) {
+async function showEmpresa () {
     let param = new URLSearchParams(window.location.search);
     let id = param.get("id");
 
@@ -87,57 +108,63 @@ async function showEmpresa (id) {
     setTimeout(() => {
         
         let miEmpresa = {
-            "cod_empresa": jsonData ['cod_empresa'],
-            "nombre": jsonData['nombre'],
-            "direccion": jsonData['direccion'],
-            "telefono": jsonData['telefono'],
-            "correo": jsonData['correo'],
-            "comision": jsonData['comision'],
-            "cod_rubro": jsonData['cod_rubro'],
+            "cod_empresa": jsonData[0].cod_empresa,
+            "nombre": jsonData[0].nombre,
+            "direccion": jsonData[0].direccion,
+            "telefono": jsonData[0].telefono,
+            "correo": jsonData[0].correo,
+            "comision": jsonData[0].comision,
+            "cod_rubro": jsonData[0].cod_rubro,
         }
+        console.log(jsonData)
         console.log(miEmpresa)
         
         
-            document.getElementById("codigo_editorial").value = miEditorial.codigo_editorial
+            document.getElementById("cod_empresa").value = miEmpresa.cod_empresa
     
-            document.getElementById("nombre_editorial").value = miEditorial.nombre_editorial
+            document.getElementById("nombre").value = miEmpresa.nombre
     
-            document.getElementById("contacto").value = miEditorial.contacto
+            document.getElementById("direccion").value = miEmpresa.direccion
     
-            document.getElementById("telefono").value = miEditorial.telefono
+            document.getElementById("telefono").value = miEmpresa.telefono
+
+            document.getElementById("correo").value = miEmpresa.correo
+
+            document.getElementById("comision").value = miEmpresa.comision
+
+            document.getElementById("cod_rubro").value = miEmpresa.cod_rubro
     }, 0);
 }
 
 async function updateEmpresa () {
-    let btnUpdateEditorial = document.getElementById("update-editorial")
-
-    btnUpdateEditorial.addEventListener("click", (e)=> {
-        e.preventDefault()
-    })
 
     let param = new URLSearchParams(window.location.search);
     let id = param.get("id");
 
 
-    let url = `http://localhost:8000/api/editoriales/${id}`
+    let url = `http://localhost:8000/api/empresa/${id}`
     // const jsonData = await response.json()
-    let editorial = {
-        "codigo_editorial": document.getElementById("codigo_editorial").value,
-        "nombre_editorial": document.getElementById("nombre_editorial").value,
-        "contacto": document.getElementById("contacto").value,
+    let empresa = {
+        // "cod_empresa": document.getElementById("cod_empresa").value,
+        "nombre": document.getElementById("nombre").value,
+        "direccion": document.getElementById("direccion").value,
         "telefono": document.getElementById("telefono").value,
+        "correo": document.getElementById("correo").value,
+        "comision": document.getElementById("comision").value,
+        "cod_rubro": document.getElementById("cod_rubro").value,
     }
-
-    console.log(editorial)
+    
+    console.log(empresa)
     const response = await fetch(url, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
           },
-        body: JSON.stringify(editorial),
+        body: JSON.stringify(empresa),
     })
+    console.log(response)
     if (response.ok) {
-        window.location.href = "index.html"
+        window.location.href = "EmpresasOfertantes.html"
     } else {
         alert(response.error)
     }
@@ -155,7 +182,7 @@ async function deleteEmpresa (id) {
 
         if (response.ok) {
             console.log(response)
-            window.location.href = "index.html"
+            window.location.href = "EmpresasOfertantes.html"
         } else {
             console.error(response.error)
         }
