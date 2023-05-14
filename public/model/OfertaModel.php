@@ -174,6 +174,44 @@ class Oferta {
 		}
 		return $rs;
 	}
+
+
+	public function buscarCupones($termino){
+		$sql = " SELECT * FROM oferta WHERE titulo LIKE CONCAT ('%',:termino,'%')";
+		$conn = new Conexion();
+        $dbh = $conn->getConexion();
+		$rs = array();
+		try{
+			$stmt = $dbh->prepare($sql);
+			$stmt->bindParam(':termino', $termino);
+			$stmt->execute();
+		}catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+		}
+
+		if($stmt->rowCount() > 0){
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+				
+				$cupon = new self();
+
+				$cupon->setCodOferta($row['cod_oferta']);
+				$cupon->setTitulo($row['titulo']);
+				$cupon->setPrecioRegular($row['precio_regular']);
+				$cupon->setPrecioOferta($row['precio_oferta']);
+				$cupon->setInicioOferta($row['inicio_oferta']);
+				$cupon->setFinOferta($row['fin_oferta']);
+				$cupon->setFechaLimiteCupon($row['fechaLimite_cupon']);
+				$cupon->setCantidadLimiteCupon($row['cantidadLimite_cupon']);
+				$cupon->setDecripcion($row['descripcion']);
+				$cupon->setEstado($row['estado']);
+				$cupon->setCodEmpresa($row['cod_empresa']);
+
+				array_push($rs, $cupon);
+			}
+		}
+		return $rs;
+	}
+
 	
 	public function listarCupon($codCupon){
 		$sql = " SELECT * FROM oferta WHERE cod_oferta=:cod_oferta";
