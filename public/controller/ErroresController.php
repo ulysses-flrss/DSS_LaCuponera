@@ -182,10 +182,10 @@ class ErroresController
 
 
          if ($result == "OK") {
-              Redireccion a Pagina Index
+              // Redireccion a Pagina Index
              require_once(VIEW_PATH . 'viewLogin.php');
          } else {
-              Mostrar mensaje de error de autentificación   
+              // Mostrar mensaje de error de autentificación   
              require_once(VIEW_PATH . 'viewRegister.php');
          }
 

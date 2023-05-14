@@ -4,95 +4,107 @@ use UsuarioController as GlobalUsuarioController;
 
 use function PHPSTORM_META\map;
 
+// Incluyendo archivo que facilita rutas
 include_once($_SERVER['DOCUMENT_ROOT'] . '/DSS_LaCuponera/public/config.php');
 
+// Incluyando archivo de validaciones 
 require_once(MODEL_PATH . 'validaciones.php');
 
+// Obteniendo la acción del usuario
 $accion = isset($_REQUEST['accion'])?$_REQUEST['accion']:'';
 
 switch($accion) {
-    case '': case 'loginView':
-        require_once(VIEW_PATH.'viewLogin.php');
+    case '': case 'loginView': // Caso cuando entra por primera vez a la pagina o cuando le da "Ya tengo cuenta"
+        require_once(VIEW_PATH.'viewLogin.php'); // Mostrar el Login
         break;
     
-    case 'registerView':
-        require_once(VIEW_PATH.'viewRegister.php');
+    case 'registerView': //  Caso cuando da click en "No tengo cuenta"
+        require_once(VIEW_PATH.'viewRegister.php'); // Mostrar el registro de cliente
         break;
 
-    case 'guestView':
-        require_once(VIEW_PATH.'viewOfertas.php');
+    case 'guestView': // Caso cuando da click "Entrar como invitado"
+        require_once(VIEW_PATH.'viewOfertas.php'); // Mostrar ofertas
         break;
 
 
-    case 'register':
-        register();
+    case 'register': // Caso cuando le da click a "Registrarse" en "viewRegister.php"
+        register(); // Metodo de registro
         break;
 
-    case 'login':
-        login();
+    case 'login': // Caso cuando le da click a "Iniciar Sesión" en "viewLogin.php"
+        login(); // Metodo de inicio de sesión
         break;
 
-    case 'logout':
-        logout();
+    case 'logout': // Caso cuando le da click en "Cerrar Sesión"
+        logout(); // Metodo de cierre de sesión
         break;
 
     
 }   
 
 function login() {
-    require_once(MODEL_PATH . 'UsuarioModel.php');
+    require_once(MODEL_PATH . 'UsuarioModel.php'); // Importar el Modelo del Usuario
 
-    $usuario = new Usuario;
+    $usuario = new Usuario; // Nueva insatncia de Usuario
 
-    $errores = "";
-    $num_errores = 0;
+    
+
+    // Definiendo variables
     $correo = isset($_POST['correo'])?$_POST['correo']:'';
     $password = isset($_POST['password'])?$_POST['password']:'';
-    $valCorreo = Validacion::isCorreo($correo);
-
-    if ($correo == '' || $password == '') {
-        $errores .= "<p>Ningun campo puede quedar vacio</p>";
-        require_once(VIEW_PATH.'viewLogin.php');
-        return $errores;
+    
+    // Gestión de errores
+    $errores = ""; // Cadena que va tener todos los mensajes de error
+    $num_errores = 0;
+    $valCorreo = Validacion::isCorreo($correo); // Validando Correo
+    
+    // IF, si el 'correo' o 'password' están vacias
+    if ($correo == '' || $password == '') { 
+        $errores .= "<p>Ningun campo puede quedar vacio</p>"; // Concatenar a la cadena el mensaje de error
+        require_once(VIEW_PATH.'viewLogin.php'); // Mostrar el login
+        return $errores; // Retornas los mensaje de error
     }
 
+    // IF, si el correo es valido
     if($valCorreo == "OK"){
-        $usuario->setCorreo($correo);
+        $usuario->setCorreo($correo); 
     } else {
-        $errores .= "<p>$valCorreo</p>";
-        require_once(VIEW_PATH.'viewLogin.php');
-        // var_dump($valCorreo);
-        return $errores;
+        $errores .= "<p>$valCorreo</p>"; // Concatenar a la cadena el mensaje de error (definido en el mensaje de validaciones)
+        require_once(VIEW_PATH.'viewLogin.php'); // Mostrar Login
+        return $errores; // Retornar los mensajes de error
     }
 
-    $hashed = $usuario->getHashedPassword($correo);
-    // var_dump($hashed);
+    // Este codigo se ejecuta si el 'correo' y 'password' no están vacios y son validos
+
+    $hashed = $usuario->getHashedPassword($correo); // Metodo que obtiene la contraseña Hasheada de la Base de Datos
+    // IF, si no encuentra ninguna contraseña
     if ($hashed == false) {
-        $errores .= "<p>El correo no está asociado a ninguna cuenta</p>";
-        require_once(VIEW_PATH.'viewLogin.php');
-        return $errores;
+        $errores .= "<p>El correo no está asociado a ninguna cuenta</p>"; // Concatenar a la cadena el mensaje de error
+        require_once(VIEW_PATH.'viewLogin.php'); // Mostrar Login
+        return $errores; // Retornar mensajes de error
     } else {
+        // Se ejecuta si hay una contraseña asociada
         $usuario->setPassword($hashed['password']);
-        if (password_verify($password, $hashed['password'])) {
-            $usuarioActual = $usuario->getUsuario($usuario->getCorreo(), $usuario->getPassword());
-            $_SESSION['usuario'] = $usuarioActual;
-            require_once(VIEW_PATH.'viewOfertas.php');
+        if (password_verify($password, $hashed['password'])) { // Verifica si la contraseña que el usuario ingreso es igual a la contraseña hasheada
+            $usuarioActual = $usuario->getUsuario($usuario->getCorreo(), $usuario->getPassword()); // Guarda en $usuarioActual TODA la información del usuario
+            $_SESSION['usuario'] = $usuarioActual; // Guarda en una variable de sesión el objeto con la información del Usuario
+            require_once(VIEW_PATH.'viewOfertas.php'); // Muestra las ofertas
         } else {
-            $errores .= "<p>Usuario o Contraseña incorrectas</p>";
-            require_once(VIEW_PATH.'viewLogin.php');
-            return $errores;
+            $errores .= "<p>Usuario o Contraseña incorrectas</p>"; // Concatenar a la cadena el mensaje de error
+            require_once(VIEW_PATH.'viewLogin.php'); // Mostrar el login
+            return $errores; // Retornar mensajes de error
         }
     }
 }
 
 
 function register() {
-    require_once(MODEL_PATH . 'UsuarioModel.php');
-    require_once(MODEL_PATH . 'validaciones.php');
+    require_once(MODEL_PATH . 'UsuarioModel.php'); // Importar 
+    require_once(MODEL_PATH . 'validaciones.php'); // Importar 
 
-    $errores = null;
-    $num_errores = 0;
-    $usuario = new Usuario();
+    $usuario = new Usuario(); // Instancia de Usuario
+
+    // Definiendo campos del formulario
     $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
     $passwordConf = isset($_POST['passwordConfirm']) ? $_POST['passwordConfirm'] : '';
@@ -103,16 +115,20 @@ function register() {
     $codEmpresa = isset($_POST['codEmpresa']) ? $_POST['codEmpresa'] : '';
     $codRol = isset($_POST['codRol']) ? $_POST['codRol'] : '';
     
+    // Gestion de errores
+    $errores = null;
+    $num_errores = 0;
     $valCorreo = Validacion::isCorreo($correo);
     $valDui = Validacion::isDui($dui);
     $valTelefono = Validacion::isTelefono($telefono);
 
-
+        // IF si alguno de los campos está vacio
         if ($correo == "" || $password == "" || $dui == "" || $nombre == "" || $apellido == "" || $telefono == "") {
             $num_errores++;
             $errores .= "<p>Ningun campo puede quedar vacio</p>";
         }
 
+        // IF si DUI es valido
         if ($dui != "" && $valDui == "OK") {
             $usuario->setDui($dui);
         } else {
@@ -120,6 +136,7 @@ function register() {
             $errores .= "<p>$valDui</p>";
         }
 
+        // IF si TELEFONO es valido
         if ($telefono != "" && $valTelefono == "OK") {
             $usuario->setTelefono($telefono);
         } else {
@@ -127,6 +144,7 @@ function register() {
             $errores .= "<p>$valTelefono</p>";
         }
 
+        // IF si CORREO es valido
         if ($correo != "" && $valCorreo == "OK") {
             $usuario->setCorreo($correo);
         } else {
@@ -134,6 +152,7 @@ function register() {
             $errores .= "<p>$valCorreo</p>";
         }
 
+        // IF para verificar si la contraseña se escribió correctamente en el campo de confirmación
         if ($password == $passwordConf) {
             $usuario->setPassword(password_hash($password, PASSWORD_BCRYPT));
         } else {
