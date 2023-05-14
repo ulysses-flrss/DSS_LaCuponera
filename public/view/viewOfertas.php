@@ -35,7 +35,7 @@ session_start();
 
     <form action="<?php CONTROLLER_PATH . 'OfertasController.php' ?>" method="post">
         <input type="text" placeholder="Producto a buscar..." class="search-box" name="termino" id="termino">
-        <button type="submit" name="accion" id="termino" value="buscar">Buscar</button>
+        <button type="submit" name="accion_oferta" id="termino" value="buscar">Buscar</button>
     </form>
 <?php 
 
