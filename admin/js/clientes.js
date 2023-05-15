@@ -32,6 +32,7 @@ async function printClientes () {
             <td>${element['telefono']}</td>
             <td>${element['dui']}</td>
             <td>${element['correo']}</td>
+            <td><a href="" type="submit" class="waves-effect waves-light btn" id="verCupones">Ver Cupones</a></td>
         `
 
         $myTable.appendChild($tr)
