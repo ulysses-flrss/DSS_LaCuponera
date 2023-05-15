@@ -13,7 +13,7 @@ $accion = isset($_REQUEST['accion_oferta'])?$_REQUEST['accion_oferta']:'';
 
 // Obteniendo codigo del cupon si existe
 $codCupon = isset($_REQUEST['codigoCupon'])?$_REQUEST['codigoCupon']:'';
-$termino = isset($_REQUEST['termino'])?$_REQUEST['termino']:'';
+$termino = isset($_POST['termino'])?$_POST['termino']:'';
 
 switch ($accion) {
     case '': // Caso cuando se acaba de loguear o entra a la pagina de ofertas
@@ -37,7 +37,7 @@ switch ($accion) {
     case 'buscar':
         $oferta = new Oferta;
         $ofertas = $oferta->buscarCupones($termino);
-        require_once(VIEW_PATH. 'viewOfertas.php');
+        require_once(VIEW_PATH. 'viewOfertas.php'); 
         break;
 
 

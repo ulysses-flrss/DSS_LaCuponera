@@ -9,4 +9,5 @@ define('CSS_PATH', ROOT_PATH.'view/css/');
 define('IMG_PATH', ROOT_PATH.'view/img/');
 define('PLUGIN_PATH', ROOT_PATH.'view/plugins/default.php');
 
+
 ?>

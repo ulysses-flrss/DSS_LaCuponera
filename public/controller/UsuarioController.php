@@ -203,9 +203,11 @@ function register() {
 }
 
 function logout() {
+    $relativePath = "/DSS_LaCuponera/public";
     $_SESSION['usuario'] = null;
+    session_start();
     session_unset();
     session_destroy();
-    header('location: index.php');
+    header('location:'. $relativePath.'/index.php');
 }
 

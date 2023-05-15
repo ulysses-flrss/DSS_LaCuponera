@@ -2,7 +2,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'].'/DSS_LaCuponera/public/config.php'); 
     include_once(PLUGIN_PATH);
     include_once(CONTROLLER_PATH.'OfertasController.php');
-
+    $relativePath = "/DSS_LaCuponera/public";
     error_reporting(E_ALL ^ E_NOTICE);
     session_start();
 
@@ -26,8 +26,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="view/css/detalles-style.css"> 
-    <title>Document</title>
+    <link rel="stylesheet" href="<?=$relativePath?>/view/css/detalles-style.css"> 
+    <title>  <?=$oferta_selected->getCodOferta()?> </title>
     <?= head() ?>
 </head>
 <body>
