@@ -38,10 +38,6 @@ async function printEsperaAprobacion () {
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
-            <td>
-                <a href='modify.html?id=${element['cod_oferta']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_oferta']}')">Eliminar</a>
-            </td>
         `
 
         $myTable.appendChild($tr)
@@ -87,10 +83,6 @@ async function printFuturaAprobacion () {
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
-            <td>
-                <a href='modify.html?id=${element['cod_oferta']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_oferta']}')">Eliminar</a>
-            </td>
         `
 
         $myTable.appendChild($tr)
@@ -135,10 +127,6 @@ async function printOfertaActiva () {
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
-            <td>
-                <a href='modify.html?id=${element['cod_oferta']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_oferta']}')">Eliminar</a>
-            </td>
         `
 
         $myTable.appendChild($tr)
@@ -184,10 +172,6 @@ async function printofertaPasada () {
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
-            <td>
-                <a href='modify.html?id=${element['cod_oferta']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_oferta']}')">Eliminar</a>
-            </td>
         `
 
         $myTable.appendChild($tr)
@@ -233,10 +217,6 @@ async function printOfertaRechazada () {
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
-            <td>
-                <a href='modify.html?id=${element['cod_oferta']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_oferta']}')">Eliminar</a>
-            </td>
         `
 
         $myTable.appendChild($tr)
@@ -282,10 +262,6 @@ async function printOfertaDescartada () {
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
-            <td>
-                <a href='modify.html?id=${element['cod_oferta']}'>Modificar</a>
-                <a href='#' onclick="deleteData('${element['cod_oferta']}')">Eliminar</a>
-            </td>
         `
 
         $myTable.appendChild($tr)

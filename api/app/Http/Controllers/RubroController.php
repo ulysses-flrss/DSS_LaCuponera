@@ -14,7 +14,7 @@ class RubroController extends Controller
      */
     public function index()
     {
-        $rubros = DB::table('rubro')->where('cod_rubro', 'RUB')->get();
+        $rubros = DB::table('rubro')->get();
         return $rubros;
     }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../../../js/ofertas.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
 
             <tbody>
                 <script>
-                    
+                    printEsperaAprobacion ();
                 </script>
             </tbody>
         </table>
@@ -39,7 +40,7 @@
     <div>
         <h3>Aprobadas futuras</h3>
         
-        <table class="striped" id="myTable">
+        <table class="striped" id="myTable2">
             <thead>
                 <th>Codigo:</th>
                 <th>Titulo:</th>
@@ -55,7 +56,9 @@
             </thead>
 
             <tbody>
-                <script></script>
+                <script>
+                    printFuturaAprobacion ()
+                </script>
             </tbody>
         </table>
     </div>
@@ -63,7 +66,7 @@
     <div>
         <h3>Activas</h3>
         
-        <table class="striped" id="myTable">
+        <table class="striped" id="myTable3">
             <thead>
                 <th>Codigo:</th>
                 <th>Titulo:</th>
@@ -79,14 +82,16 @@
             </thead>
 
             <tbody>
-               <script></script>
+               <script>
+                printOfertaActiva();
+               </script>
             </tbody>
         </table>
     </div>
     <br>
     <div>
         <h3>Pasadas</h3>
-        <table class="striped" id="myTable">
+        <table class="striped" id="myTable4">
             <thead>
                 <th>Codigo:</th>
                 <th>Titulo:</th>
@@ -102,14 +107,16 @@
             </thead>
 
             <tbody>
-                <script></script>
+                <script>
+                    printOfertaPasada ();
+                </script>
             </tbody>
         </table>
     </div>
     <br>
     <div>
         <h3>Rechazadas</h3>
-        <table class="striped" id="myTable">
+        <table class="striped" id="myTable5">
             <thead>
                 <th>Codigo:</th>
                 <th>Titulo:</th>
@@ -125,14 +132,16 @@
             </thead>
 
             <tbody>
-                <script></script>
+                <script>
+                    printOfertaRechazada ();
+                </script>
             </tbody>
         </table>
     </div>
     <br>
     <div>
         <h3>Descartadas</h3>
-        <table class="striped" id="myTable">
+        <table class="striped" id="myTable6">
             <thead>
                 <th>Codigo:</th>
                 <th>Titulo:</th>
@@ -148,13 +157,16 @@
             </thead>
 
             <tbody>
-                <script></script>
+                <script>
+                    printOfertaDescartada ();
+                </script>
             </tbody>
         </table>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/materialize.js"></script>
+    <script src="../../../js/materialize.js"></script>
+
     
 </body>
 </html>

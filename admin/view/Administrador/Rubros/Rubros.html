@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/root-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="../../../js/rubros.js"></script>
     <title>Rubros</title>
@@ -14,7 +13,7 @@
 <body style="padding: 30px;">
     <h1 style="text-align: center;">Rubros</h1>
     <div>
-        <a href="" class="waves-effect waves-light btn" id="agregar"  style=" margin: 15px;">Agregar Rubro</a>
+        <a href="AgregarRubros.html" class="waves-effect waves-light btn" id="agregar"  style=" margin: 15px;">Agregar Rubro</a>
         <table class="striped" id="myTable">
             <thead>
                 <th>Codigo de Rubro:</th>
@@ -22,20 +21,16 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>
-                        <script>
-                            printRubros ()
-                        </script>
-                    </td>
-                </tr>
+                <script>
+                    printRubros ()
+                </script>
             </tbody>
         </table>
     </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/materialize.js"></script>
+    <script src="../../../js/materialize.js"></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@ if (document.getElementById("add-rubro")) {
 
     btnAddrubro.addEventListener("click", e => {
         e.preventDefault()
-        insertrubro()
+        insertRubros()
     })
 }
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnUpdaterubro.addEventListener("click", (e) => {
         e.preventDefault()
-        updaterubro()
+        updateRubro()
     })
 })
 
@@ -27,7 +27,6 @@ async function getRubros () {
             "cod_rubro": element['cod_rubro'],
             "rubro": element['rubro']
         }
-
         rubros.push(miRubro)
     }); 
 
@@ -48,7 +47,7 @@ async function printRubros () {
                 <a href='#' onclick="deleteRubro('${element['cod_rubro']}')" class="waves-effect waves-light btn">Eliminar</a>
             </td>
         `
-
+        console.log(rubros)
         $myTable.appendChild($tr)
     }); 
 }
@@ -91,18 +90,18 @@ async function showRubro () {
     setTimeout(() => {
         
         let miRubro = {
-
+            "cod_rubro":jsonData[0].cod_rubro,
             "rubro": jsonData[0].rubro
         }
 
         
-        
+            document.getElementById("cod_rubro").value = miRubro.cod_rubro
             document.getElementById("rubro").value = miRubro.rubro
     }, 0);
 }
 
 async function updateRubro () {
-   
+
     let param = new URLSearchParams(window.location.search);
     let id = param.get("id");
 
