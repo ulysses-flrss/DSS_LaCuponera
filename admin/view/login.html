@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Inicio</title>
 </head>
-<body>
+<body style="padding: 30px;">
     <div class="row">
     
-        <h1>Iniciar Sesión</h1>
+        <h1 style="text-align: center;">Iniciar Sesión</h1>
         <form action="" class="col s12" method="POST">
             <p class="error-message"></p>
         <div class="row">
             <div class="input-field col s12">
                 <label for="email">Correo:</label>
-                <input type="email" name="email" id="email" class="validate">
+                <input type="email" name="correo" id="correo" class="validate">
                     <p class="error-message"></p>
             </div>
     
@@ -26,15 +26,14 @@
                     <p class="error-message"></p>
             </div>
             
-                <input type="submit" value="Iniciar sesión" class="waves-effect waves-light btn">
+                <input type="submit" value="Iniciar sesión" class="waves-effect waves-light btn" id="login">
             </form>
-    
-            <a href="" class="waves-effect waves-light btn">No tengo cuenta</a>
         </div>
     
         </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/materialize.js"></script>
+    <script src="../js/materialize.js"></script>
+    <script src="../js/login.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ async function getEsperaAprobacion () {
             'inicio_oferta': element['inicio_oferta'],
             'fin_oferta': element['fin_oferta'],
             'fechaLimite_cupon': element['fechaLimite_cupon'],
+            'cantidadLimite_cupon': element['cantidadLimite_cupon'],
             'descripcion': element['descripcion'],
             'estado': element['estado'],
             'cod_empresa': element['cod_empresa'],
@@ -35,6 +36,7 @@ async function printEsperaAprobacion () {
             <td>${element['inicio_oferta']}</td>
             <td>${element['fin_oferta']}</td>
             <td>${element['fechaLimite_cupon']}</td>
+            <td>${element['cantidadLimite_cupon']}</td>
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
@@ -57,6 +59,7 @@ async function getFuturaAprobacion () {
             'inicio_oferta': element['inicio_oferta'],
             'fin_oferta': element['fin_oferta'],
             'fechaLimite_cupon': element['fechaLimite_cupon'],
+            'cantidadLimite_cupon': element['cantidadLimite_cupon'],
             'descripcion': element['descripcion'],
             'estado': element['estado'],
             'cod_empresa': element['cod_empresa'],
@@ -80,6 +83,7 @@ async function printFuturaAprobacion () {
             <td>${element['inicio_oferta']}</td>
             <td>${element['fin_oferta']}</td>
             <td>${element['fechaLimite_cupon']}</td>
+            <td>${element['cantidadLimite_cupon']}</td>
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
@@ -102,6 +106,7 @@ async function getOfertaActiva () {
             'inicio_oferta': element['inicio_oferta'],
             'fin_oferta': element['fin_oferta'],
             'fechaLimite_cupon': element['fechaLimite_cupon'],
+            'cantidadLimite_cupon': element['cantidadLimite_cupon'],
             'descripcion': element['descripcion'],
             'estado': element['estado'],
             'cod_empresa': element['cod_empresa'],
@@ -124,6 +129,7 @@ async function printOfertaActiva () {
             <td>${element['inicio_oferta']}</td>
             <td>${element['fin_oferta']}</td>
             <td>${element['fechaLimite_cupon']}</td>
+            <td>${element['cantidadLimite_cupon']}</td>
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
@@ -146,6 +152,7 @@ async function getOfertaPasada () {
             'inicio_oferta': element['inicio_oferta'],
             'fin_oferta': element['fin_oferta'],
             'fechaLimite_cupon': element['fechaLimite_cupon'],
+            'cantidadLimite_cupon': element['cantidadLimite_cupon'],
             'descripcion': element['descripcion'],
             'estado': element['estado'],
             'cod_empresa': element['cod_empresa'],
@@ -156,7 +163,7 @@ async function getOfertaPasada () {
     return ofertas;
 }
 
-async function printofertaPasada () {
+async function printOfertaPasada () {
     let ofertas = await getOfertaPasada();
     let $myTable = document.getElementById("myTable4");
     
@@ -169,6 +176,7 @@ async function printofertaPasada () {
             <td>${element['inicio_oferta']}</td>
             <td>${element['fin_oferta']}</td>
             <td>${element['fechaLimite_cupon']}</td>
+            <td>${element['cantidadLimite_cupon']}</td>
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
@@ -191,6 +199,7 @@ async function getOfertaRechazada () {
             'inicio_oferta': element['inicio_oferta'],
             'fin_oferta': element['fin_oferta'],
             'fechaLimite_cupon': element['fechaLimite_cupon'],
+            'cantidadLimite_cupon': element['cantidadLimite_cupon'],
             'descripcion': element['descripcion'],
             'estado': element['estado'],
             'cod_empresa': element['cod_empresa'],
@@ -214,6 +223,7 @@ async function printOfertaRechazada () {
             <td>${element['inicio_oferta']}</td>
             <td>${element['fin_oferta']}</td>
             <td>${element['fechaLimite_cupon']}</td>
+            <td>${element['cantidadLimite_cupon']}</td>
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>
@@ -236,6 +246,7 @@ async function getOfertaDescartada () {
             'inicio_oferta': element['inicio_oferta'],
             'fin_oferta': element['fin_oferta'],
             'fechaLimite_cupon': element['fechaLimite_cupon'],
+            'cantidadLimite_cupon': element['cantidadLimite_cupon'],
             'descripcion': element['descripcion'],
             'estado': element['estado'],
             'cod_empresa': element['cod_empresa'],
@@ -259,6 +270,7 @@ async function printOfertaDescartada () {
             <td>${element['inicio_oferta']}</td>
             <td>${element['fin_oferta']}</td>
             <td>${element['fechaLimite_cupon']}</td>
+            <td>${element['cantidadLimite_cupon']}</td>
             <td>${element['descripcion']}</td>
             <td>${element['estado']}</td>
             <td>${element['cod_empresa']}</td>

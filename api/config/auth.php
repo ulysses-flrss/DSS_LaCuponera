@@ -46,19 +46,19 @@ return [
         // Guardia para el administrador de empresa ofertante
         'admin_empresa' => [
             'driver' => 'session',
-            'provider' => 'usuarios',
+            'provider' => 'users',
         ],
 
         // Guardia para el cliente
         'cliente' => [
             'driver' => 'session',
-            'provider' => 'usuarios',
+            'provider' => 'users',
         ],
 
         // Guardia para el empleado
         'empleado' => [
             'driver' => 'session',
-            'provider' => 'usuarios',
+            'provider' => 'users',
         ]
     ],
 

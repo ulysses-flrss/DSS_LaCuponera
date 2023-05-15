@@ -33,10 +33,11 @@ if (isset($_SESSION['usuario'])) {
 
 <body>
     <?= menu() ?>
+    <br>
 
-    <form action="<?=$relativePath?>/controller/OfertasController.php" method="post">
-        <input type="text" placeholder="Producto a buscar..." class="search-box" name="termino" id="termino">
-        <button type="submit" name="accion_oferta" id="buscar" value="buscar">Buscar</button>
+    <form action="<?=$relativePath?>/controller/OfertasController.php" method="post" class="ofertas">
+        <input type="text" placeholder="Cupon a buscar..." class="search-box" name="termino" id="termino">
+        <button type="submit" name="accion_oferta" id="buscar" value="buscar" class="button-buscar">Buscar</button>
     </form>
 <?php 
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OfertasController;
 use App\Http\Controllers\RubroController;
 use Illuminate\Http\Request;
@@ -35,3 +36,4 @@ Route::get('/ofertas/pasadas', [OfertasController::class, 'OfertaPasada'])->name
 Route::get('/ofertas/rechazadas', [OfertasController::class, 'OfertaRechazada'])->name('ofertas.rechazadas');
 Route::get('/ofertas/descartadas', [OfertasController::class, 'OfertaDescartada'])->name('ofertas.descartadas');
 
+Route::post('/login', [LoginController::class, 'store'])->name('admin.login');

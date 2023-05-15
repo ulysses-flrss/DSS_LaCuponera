@@ -76,6 +76,7 @@ class OfertasController extends Controller
             'inicio_oferta' =>['required'],
             'fin_oferta' => ['required'],
             'fechaLimite_cupon' => ['required'],
+            'cantidadLimite_cupon' => ['required'],
             'descripcion' => ['required|max:255'],
             'estado' => ['required'],
             'cod_empresa' => ['required'],
@@ -91,6 +92,7 @@ class OfertasController extends Controller
             $ofertas->inicio_oferta = $request->input('inicio_oferta');
             $ofertas->fin_oferta = $request->input('fin_oferta');
             $ofertas->fechaLimite_cupon = $request->input('fechaLimite_cupon');
+            $ofertas->cantidadLimite_cupon = $request->input('cantidadLimite_cupon');
             $ofertas->descripcion = $request->input('descripcion');
             $ofertas->estado = $request->input('estado');
             $ofertas->cod_empresa = $request->input('cod_empresa');
@@ -127,6 +129,7 @@ class OfertasController extends Controller
             'inicio_oferta' =>['required'],
             'fin_oferta' => ['required'],
             'fechaLimite_cupon' => ['required'],
+            'cantidadLimite_cupon' => ['required'],
             'descripcion' => ['required|max:255'],
             'estado' => ['required'],
             'cod_empresa' => ['required'],

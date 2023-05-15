@@ -1,5 +1,7 @@
 
 if (document.getElementById("add-empresa")) {
+
+    listarRubros()
     let btnAddEmpresa = document.getElementById("add-empresa")
 
     btnAddEmpresa.addEventListener("click", e => {
@@ -17,6 +19,37 @@ btnUpdateEmpresa.addEventListener("click", (e)=> {
     updateEmpresa()
 })
 })
+
+
+async function getRubros () {
+    
+    const url = 'http://localhost:8000/api/rubro'
+    const response = await fetch(url)
+    const jsonData = await response.json()
+    let rubros = [];
+    jsonData.forEach(element => {
+        let miRubro = {
+            "cod_rubro": element['cod_rubro'],
+            "rubro": element['rubro']
+        }
+        rubros.push(miRubro)
+    }); 
+
+    return rubros;
+}
+
+async function listarRubros () {
+    let rubros = await getRubros();
+    let $mySelect = document.getElementById("cod_rubro");
+    
+    rubros.forEach(element => {
+        let $option = document.createElement("option");
+        $option.innerHTML = `${element['rubro']}`
+        $option.value = element['cod_rubro']
+        $mySelect.appendChild($option) 
+    }); 
+}
+
 
 
 async function getEmpresas () {

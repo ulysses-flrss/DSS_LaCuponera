@@ -1,66 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../../../js/empresas.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <title>Modificar</title>
-</head>
-<body>
-    <div class="row" style="padding: 30px;">
-        <h1 style="text-align: center;">Modifica los datos de la Empresa</h1>
-        <form action="" class="col s12" method="POST">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="../Clientes/Clientes.html">Clientes</a></li>
+          <li><a href="EmpresasOfertantes.html">Empresa Ofertantes</a></li>
+          <li><a href="../Rubros/Rubros.html">Rubros</a></li>
+          <li><a href="">Cerrar Sesion</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row" style="padding: 30px">
+      <h1 style="text-align: center">Modifica los datos de la Empresa</h1>
+      <form action="" class="col s12" method="POST">
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="id">Codigo de Empresa:</label>
+            <input
+              type="text"
+              readonly
+              name="cod_empresa"
+              id="cod_empresa"
+              class="validate"
+            />
+          </div>
 
-            <div class="row">
-                <div class="input-field col s12">
-                    <label for="id">Codigo de Empresa:</label>
-                    <input type="text" readonly name="cod_empresa" id="cod_empresa" class="validate">
-                </div>
-                
-                <div class="input-field col s6">
-                    <label for="name">Nombre de la Empresa:</label>
-                    <input type="text" name="nombre" id="nombre"  class="validate">
-                </div>
-    
-                <div class="input-field col s6">
-                    <label for="direccion">Direccion:</label>
-                    <input type="text" name="direccion" id="direccion" class="validate">
-                </div>
-    
-                <div class="input-field col s12">
-                    <label for="telefono">Telefono:</label>
-                    <input type="text" name="telefono" id="telefono" class="validate">
-                </div>
+          <div class="input-field col s6">
+            <label for="name">Nombre de la Empresa:</label>
+            <input type="text" name="nombre" id="nombre" class="validate"/>
+          </div>
 
-                <div class="input-field col s12">
-                    <label for="email">Correo:</label>
-                    <input type="text" name="correo" id="correo" class="validate">
-                </div>
+          <div class="input-field col s6">
+            <label for="direccion">Direccion:</label>
+            <input
+              type="text"
+              name="direccion"
+              id="direccion"
+              class="validate"
+            />
+          </div>
 
-                <div class="input-field col s12">
-                    <label for="comision">Comision:</label>
-                    <input type="text" name="comision" id="comision" class="validate">
-                </div>
+          <div class="input-field col s12">
+            <label for="telefono">Telefono:</label>
+            <input type="text" name="telefono" id="telefono" class="validate" />
+          </div>
 
-                <div class="input-field col s12">
-                    <label for="rubro">Rubro:</label>
-                    <input type="text" name="cod_rubro" id="cod_rubro" class="validate">
-                </div>
-    
-                
-                
-                    <input type="submit" id="update-empresa" value="Modificar Empresa" class="waves-effect waves-light btn">
-            </div>
-        </form>
+          <div class="input-field col s12">
+            <label for="email">Correo:</label>
+            <input type="text" name="correo" id="correo" class="validate" />
+          </div>
+
+          <div class="input-field col s12">
+            <label for="comision">Comision:</label>
+            <input type="text" name="comision" id="comision" class="validate" />
+          </div>
+
+          <div class="input-field col s12">
+            <label for="rubro">Rubro:</label>
+            <input
+              type="text"
+              name="cod_rubro"
+              id="cod_rubro"
+              class="validate"
+            />
+          </div>
+
+          <input
+            type="submit"
+            id="update-empresa"
+            value="Modificar Empresa"
+            class="waves-effect waves-light btn"
+          />
+        </div>
+      </form>
     </div>
 
     <script>
-        showEmpresa();        
+      showEmpresa();
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="../../../js/materialize.js"></script>
-</body>
+  </body>
 </html>
