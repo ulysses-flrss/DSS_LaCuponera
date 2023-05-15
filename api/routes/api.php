@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\OfertasController;
@@ -25,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('empresa', EmpresaController::class);
 Route::resource('rubro',RubroController::class);
+Route::resource('cliente', ClienteController::class);
 
 Route::get('/ofertas/espera', [OfertasController::class, 'EsperaAprobacion'])->name('ofertas.espera');
 Route::get('/ofertas/futuras', [OfertasController::class, 'FuturaAprobacion'])->name('ofertas.futuras');

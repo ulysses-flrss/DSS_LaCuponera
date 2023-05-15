@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/root-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="../../../js/clientes.js"></script>
     <title>Clientes</title>
 </head>
 <body style="padding: 30px;">
     <h1 style="text-align: center;">Información de Clientes</h1>
     <div>
-        <table class="striped">
+        <table class="striped" id="myTable">
             <thead>
                 <th>Nombres</th>
                 <th>Apellidos</th>
@@ -22,11 +23,11 @@
     
             <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <script>
+                                    printClientes();
+                                </script>
+                            </td>
                             <td>
                                 <input type="submit" value="Ver Cupones" class="waves-effect waves-light btn" id="verCupones">
                             </td>
