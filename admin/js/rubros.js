@@ -52,3 +52,97 @@ async function printRubros () {
         $myTable.appendChild($tr)
     }); 
 }
+
+async function insertRubros () {
+
+
+    let rubro = {
+        "rubro": document.getElementById("rubro").value,
+    }
+    
+    const url = 'http://localhost:8000/api/rubro'
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rubro),
+    })
+
+    console.log(response)
+    if (response.ok) {
+        window.location.href = "Rubros.html"
+    } else {
+        alert(response.error)
+    }
+}
+
+async function showRubro () {
+    let param = new URLSearchParams(window.location.search);
+    let id = param.get("id");
+
+    let url = `http://localhost:8000/api/rubro/${id}`
+    // const jsonData = await response.json()
+    const response = await fetch(url, {
+        method: "GET",
+    })
+    const jsonData = await response.json()
+
+    setTimeout(() => {
+        
+        let miRubro = {
+
+            "rubro": jsonData[0].rubro
+        }
+
+        
+        
+            document.getElementById("rubro").value = miRubro.rubro
+    }, 0);
+}
+
+async function updateRubro () {
+   
+    let param = new URLSearchParams(window.location.search);
+    let id = param.get("id");
+
+
+    let url = `http://localhost:8000/api/rubro/${id}`
+    // const jsonData = await response.json()
+    let rubro = {
+        "rubro": document.getElementById("rubro").value
+    }
+
+    console.log(rubro)
+    const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify(rubro),
+    })
+    console.log(response)
+    if (response.ok) {
+        window.location.href = "Rubros.html"
+    } else {
+        console.log(response.error)
+    }
+}
+
+async function deleteEmpleado (id) {
+    let eliminar = confirm(`Seguro que desea eliminar este Rubro? ${id}`)
+
+    if (eliminar) {
+        let url = `http://localhost:8000/api/rubro/${id}`
+        // const jsonData = await response.json()
+        const response = await fetch(url, {
+            method: "DELETE",
+        })
+
+        if (response.ok) {
+            window.location.href = "Rubros.html"
+        } else {
+            console.error(response.error)
+        }
+    }
+}
