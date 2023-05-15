@@ -129,7 +129,7 @@ async function updateRubro () {
     }
 }
 
-async function deleteEmpleado (id) {
+async function deleteRubro (id) {
     let eliminar = confirm(`Seguro que desea eliminar este Rubro? ${id}`)
 
     if (eliminar) {
