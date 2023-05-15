@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/root-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="../../../js/rubros.js"></script>
     <title>Modificar</title>
 </head>
 <body>
@@ -15,19 +16,23 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="id">Codigo de Rubro:</label>
-                    <input type="text" readonly name="id" id="id" class="validate">
+                    <label for="cod_rubro">Codigo de Rubro:</label>
+                    <input type="text" readonly name="cod_rubro" id="cod_rubro" class="validate">
                 </div>
                 
                 <div class="input-field col s12">
-                    <label for="name">Nombre del Rubro:</label>
-                    <input type="text" name="name" id="name"  class="validate">
+                    <label for="rubro">Nombre del Rubro:</label>
+                    <input type="text" name="rubro" id="rubro"  class="validate">
                 </div>
 
-                    <input type="submit" value="Modificar Rubro" class="waves-effect waves-light btn">
+                    <input type="submit" value="Modificar Rubro" class="waves-effect waves-light btn" id="update-rubro">
             </div>
         </form>
     </div>
+
+    <script>
+        showRubro();        
+</script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
